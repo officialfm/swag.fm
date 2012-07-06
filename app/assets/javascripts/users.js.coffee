@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+$(document).ready ->
+  $('#add_player').bind 'click', ->
+    url = prompt "Add a new player", "URL of the official.fm page"
+
+    $.ajax '/players',
+      type: 'POST',
+      data: player: url: url

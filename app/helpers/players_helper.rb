@@ -1,2 +1,2 @@
-module PlayersControllerHelper
+module PlayersHelper
 end
