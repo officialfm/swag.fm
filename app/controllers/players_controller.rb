@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-class PlayersControllerController < ApplicationController
+class PlayersController < ApplicationController
 
   def create
     @player = Player.new(params[:player])
