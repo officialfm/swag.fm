@@ -15,10 +15,17 @@ body {
 }
 
 .players .new {
-  color: #CCC;
+  float: left;
   font-size: 32pt;
-  text-decoration: none;
+  text-align: center;
+  width: 300px;
+  height: 300px;
 }
 
-.players .new:hover { color: #AAA; }
-.players .new:active { color: #888; }
+.players .new a {
+  color: #CCC;
+  text-decoration: none;
+  vertical-align: -130px;
+}
+.players .new a:hover { color: #AAA; }
+.players .new a:active { color: #888; }
