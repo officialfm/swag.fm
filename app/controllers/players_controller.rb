@@ -5,8 +5,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
     if @player.save
-      @players = Player.all
-      render template: 'users/index'
+      redirect_to '/'
     else
       render @player.errors, status: :unprocessable_entity
     end

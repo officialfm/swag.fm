@@ -1,23 +1,27 @@
 
-class Player
-  @add: ->
+class PlayerCreator
+  constructor: ->
+    @form = $('#create_player')
+    @url = @form.find('input')
+
+  add: ->
     url = prompt "Add a new player", "URL of the official.fm page"
-    if Player.match(url)
-      Player.createPlayer(url)
+    if @match(url)
+      @save(url)
     else
       alert "This is not an official.fm url!"
 
-  @match: (url) ->
-    console.log(url)
+  match: (url) ->
     return url.match /official\.fm/
 
-  @createPlayer: (url) ->
-    form = $('#create_player')
-    form.find('input').val(url)
-    form.submit()
+  save: (url) ->
+    @url.val(url)
+    @form.submit()
     
 
 
 $(document).ready ->
+  playerCreator = new PlayerCreator()
+
   $('#add_player').bind 'click', ->
-    Player.add()
+    playerCreator.add()
