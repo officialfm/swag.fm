@@ -11,3 +11,12 @@ body {
   float: left;
   margin: 10px;
 }
+
+.players .new {
+  color: #CCC;
+  font-size: 32pt;
+  text-decoration: none;
+}
+
+.players .new:hover { color: #AAA; }
+.players .new:active { color: #888; }
