@@ -1,5 +1,7 @@
 body {
   background-color: #000;
+  color: #CCC;
+  font-family: Helvetica, Arial, Sans-serif;
 }
 
 .players {
