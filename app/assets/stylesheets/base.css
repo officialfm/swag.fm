@@ -1,0 +1,13 @@
+body {
+  background-color: #000;
+}
+
+.players {
+ margin: 50px auto;
+ width: 960px;
+}
+
+.player {
+  float: left;
+  margin: 10px;
+}

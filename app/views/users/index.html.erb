@@ -1,5 +1,9 @@
-<% for player in @players %>
-  <iframe width="500" height="500" src="http://new.official.fm/player?artwork=1&width=500&height=500&skin_bg=000000&skin_fg=FFFFFF&feed=http%3A%2F%2Fnew.official.fm%2Ffeed%2F<%= player.resource_type %>%2F<%= player.resource_id %>.json" frameborder="0"></iframe>
-<% end %>
+<section class="players">
+  <% for player in @players %>
+    <div class="player">
+      <iframe width="300" height="300" src="http://new.official.fm/player?artwork=1&width=300&height=300&skin_bg=000000&skin_fg=FFFFFF&feed=http%3A%2F%2Fnew.official.fm%2Ffeed%2F<%= player.resource_type %>%2F<%= player.resource_id %>.json" frameborder="0"></iframe>
+    </div>
+  <% end %>
+</section>
 
 <a href="javascript:void(0)" id="add_player">+ Add new player</a>
