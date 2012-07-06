@@ -5,9 +5,10 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
     if @player.save
-      render json: @player
+      @players = Player.all
+      render template: 'users/index'
     else
-      render json: @player.errors, status: :unprocessable_entity
+      render @player.errors, status: :unprocessable_entity
     end
   end
 

@@ -6,3 +6,8 @@
   <% end %>
   <a href="javascript:void(0)" id="add_player" class="new iconic plus_alt"></a>
 </section>
+
+
+<form id="create_player" action="<%= players_path %>" method="POST">
+  <input type="hidden" value="" name="player[url]" />
+</form>
