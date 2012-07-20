@@ -14,6 +14,11 @@ body {
   margin: 10px;
 }
 
+.cover.playing {
+  margin: 0px;
+  border: 10px solid #FFF;
+}
+
 .cover:hover {
   cursor: pointer;
 }
