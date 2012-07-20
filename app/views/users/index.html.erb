@@ -1,11 +1,13 @@
-<section class="covers">
+<section class="tracks">
   <% if @players.empty? %>
     <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
   <% end %>
 
   <% for player in @players %>
-    <img class="cover" src="<%= player.cover_url %>" data-stream-url="<%= player.stream_url %>">
-    </img>
+    <div class="track"
+      data-stream-url="<%= player.stream_url %>"
+      style="background-image: url('<%= player.cover_url %>')">
+    </div>
   <% end %>
 
   <div class="new">

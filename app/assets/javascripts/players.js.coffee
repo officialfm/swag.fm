@@ -15,7 +15,7 @@ class Player
       @play(event.target)
 
   tracks: () ->
-    $('.cover')
+    $('.track')
 
   play: (track) ->
     $('#player').attr('src', $(track).attr('data-stream-url') + '?api_version=2')
@@ -28,9 +28,9 @@ class Player
     $('#player')[0].pause()
 
   playingTrack: () ->
-    $('.cover.playing')[0]
+    $('.track.playing')[0]
 
   pausedTrack: () ->
-    $('.cover.paused')[0]
+    $('.track.paused')[0]
 
 $(document).ready -> new Player

@@ -4,31 +4,33 @@ body {
   font-family: Helvetica, Arial, Sans-serif;
 }
 
-.covers {
+.tracks {
  margin: 50px auto;
  width: 960px;
 }
 
-.cover {
+.track {
   float: left;
   margin: 10px;
+  width: 300px;
+  height: 300px;
 }
 
-.cover.playing {
+.track.playing {
   margin: 0px;
   border: 10px solid #FFF;
 }
 
-.cover.paused {
+.track.paused {
   margin: 0px;
   border: 10px solid #AAA;
 }
 
-.cover:hover {
+.track:hover {
   cursor: pointer;
 }
 
-.covers .new {
+.tracks .new {
   float: left;
   font-size: 32pt;
   text-align: center;
@@ -36,13 +38,13 @@ body {
   height: 300px;
 }
 
-.covers .new a {
+.tracks .new a {
   color: #CCC;
   text-decoration: none;
   vertical-align: -130px;
 }
-.covers .new a:hover { color: #AAA; }
-.covers .new a:active { color: #888; }
+.tracks .new a:hover { color: #AAA; }
+.tracks .new a:active { color: #888; }
 
 .hidden {
   display: none;
