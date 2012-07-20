@@ -16,14 +16,17 @@ body {
   height: 300px;
 }
 
-.track.playing {
-  margin: 0px;
-  border: 10px solid #FFF;
-}
+.track .play, .track .pause { display: none; }
+.track.playing .pause { display: block; }
+.track.paused .play { display: block; }
 
-.track.paused {
-  margin: 0px;
-  border: 10px solid #AAA;
+.track:hover .play { display: block; }
+.track.playing:hover .play { display: none; }
+
+.track .iconic {
+  font-size: 2em;
+  color: #000;
+  text-align: center;
 }
 
 .track:hover {
