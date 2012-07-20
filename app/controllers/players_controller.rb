@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
   before_filter :find_player, only: %[destroy]
 
   def create
-    @player = Player.new(params[:player])
+    @player = Player.from_url(params[:player][:url])
     if @player.save
       respond_to do |format|
         format.html { redirect_to '/' }
