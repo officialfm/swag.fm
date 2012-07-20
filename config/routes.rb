@@ -1,8 +1,6 @@
 SwagFm::Application.routes.draw do
 
-  resources :players, only: %w[create] do
-    get :bookmarks, on: :collection
-  end
+  resources :players, only: %w[index create destroy]
 
   resources :extensions, only: [] do
     get :chrome, on: :collection

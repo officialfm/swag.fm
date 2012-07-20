@@ -2,6 +2,8 @@
 
 class PlayersController < ApplicationController
 
+  before_filter :find_player, only: %[destroy]
+
   def create
     @player = Player.new(params[:player])
     if @player.save
@@ -14,9 +16,20 @@ class PlayersController < ApplicationController
     end
   end
 
-  def bookmarks
-    @players = Player.find_by_url(params[:url])
+  def index
+    @players = Player.where(url: params[:url])
     render json: @players
+  end
+
+  def destroy
+    @player.destroy
+    render json: {}
+  end
+
+  private
+
+  def find_player
+    @player = Player.find(params[:id])
   end
 
 end

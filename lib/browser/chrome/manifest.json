@@ -2,7 +2,11 @@
   "name": "Swag.fm",
   "version": "0.3",
   "description": "Add official.fm tracks and playlists to your swag.fm page",
-  "background": { "scripts": ["jquery-1.7.2.min.js", "background.js"] },
+  "background": { "scripts": [
+    "jquery-1.7.2.min.js",
+    "jquery-ujs.js",
+    "background.js"
+  ]},
   "page_action": {
     "default_icon": "icon.ico",
     "default_title": "Add to your swag.fm page!"
