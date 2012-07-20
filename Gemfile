@@ -15,6 +15,8 @@ end
 
 gem 'therubyracer'  # Required by Uglifier
 
+gem 'officialfm', git: 'git@github.com:officialfm/officialfm-v2-ruby.git'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
