@@ -19,6 +19,11 @@ body {
   border: 10px solid #FFF;
 }
 
+.cover.paused {
+  margin: 0px;
+  border: 10px solid #AAA;
+}
+
 .cover:hover {
   cursor: pointer;
 }
