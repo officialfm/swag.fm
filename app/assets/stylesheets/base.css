@@ -4,17 +4,21 @@ body {
   font-family: Helvetica, Arial, Sans-serif;
 }
 
-.players {
+.covers {
  margin: 50px auto;
  width: 960px;
 }
 
-.player {
+.cover {
   float: left;
   margin: 10px;
 }
 
-.players .new {
+.cover:hover {
+  cursor: pointer;
+}
+
+.covers .new {
   float: left;
   font-size: 32pt;
   text-align: center;
@@ -22,10 +26,14 @@ body {
   height: 300px;
 }
 
-.players .new a {
+.covers .new a {
   color: #CCC;
   text-decoration: none;
   vertical-align: -130px;
 }
-.players .new a:hover { color: #AAA; }
-.players .new a:active { color: #888; }
+.covers .new a:hover { color: #AAA; }
+.covers .new a:active { color: #888; }
+
+.hidden {
+  display: none;
+}
