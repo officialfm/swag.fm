@@ -3,8 +3,12 @@
     <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
   <% end %>
   <% for player in @players %>
-    <div class="player">
-      <iframe width="300" height="300" src="http://new.official.fm/player?artwork=1&width=300&height=300&skin_bg=000000&skin_fg=FFFFFF&feed=http%3A%2F%2Fnew.official.fm%2Ffeed%2F<%= player.resource_type %>%2F<%= player.resource_id %>.json" frameborder="0"></iframe>
+    <div class="player" data-stream-url="<%= player.stream_url %>">
+      <img src="<%= player.cover_url %>"></img>
+      <audio controls="controls">
+        <source src="<%= player.stream_url.sub('api.', 'cdn.').sub('/tracks', '/cdn/tracks') %>" type="audio/mp3" />
+        Your browser does not support the audio tag.
+      </audio>
     </div>
   <% end %>
 
@@ -12,7 +16,6 @@
     <a href="javascript:void(0)" id="add_player" class="iconic plus_alt"></a>
   </div>
 </section>
-
 
 <form id="create_player" action="<%= players_path %>" method="POST">
   <input type="hidden" value="" name="player[url]" />
