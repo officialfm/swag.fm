@@ -16,7 +16,12 @@ end
 
 gem 'therubyracer'  # Required by Uglifier
 
-gem 'officialfm', git: 'git@github.com:officialfm/officialfm-v2-ruby.git'
+# Commented while API isn't public.
+# gem 'officialfm', git: 'git@github.com:officialfm/officialfm-v2-ruby.git'
+# Required by Official.fm API.
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'hashie'
 
 # Gems used only for assets and not required
 # in production environments by default.

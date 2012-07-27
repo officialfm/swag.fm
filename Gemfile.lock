@@ -1,12 +1,3 @@
-GIT
-  remote: git@github.com:officialfm/officialfm-v2-ruby.git
-  revision: bbb0b9063f05278d981207c90b6be4d5e8fa17c6
-  specs:
-    officialfm (0.2.0)
-      faraday (~> 0.8.1)
-      faraday_middleware (~> 0.8.8)
-      hashie (~> 1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,8 +114,10 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  faraday
+  faraday_middleware
+  hashie
   jquery-rails
-  officialfm!
   pg
   rails (= 3.2.6)
   sass-rails (~> 3.2.3)
