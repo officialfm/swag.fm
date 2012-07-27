@@ -6,20 +6,19 @@ class Player < ActiveRecord::Base
   #####################
 
   def self.from_url(url)
-    player = new(url: url)
-    player.fetch_urls
-    player
+    player = new(url: url) and player.fetch_metadata and player
   end
 
   ######################
   ### Public methods ###
   ######################
 
-  def fetch_urls
+  def fetch_metadata
     require 'swag_fm'
-    track = SwagFm.official.track(resource_id, fields: 'cover')
-    self.cover_url = track.cover.urls.medium
-    self.stream_url = track.streaming.http
+    if track = SwagFm.official.track(resource_id, fields: 'cover')
+      self.cover_url = track.cover.urls.medium
+      self.stream_url = track.streaming.http
+    end
   end
 
   def resource_id

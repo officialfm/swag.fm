@@ -2,9 +2,7 @@ require 'test_helper'
 
 class PlayerTest < ActiveSupport::TestCase
   def test_resource_id
-    player = Player.new(url: 'http://new.official.fm/playlists/1rp7')
-    assert_equal('1rp7', player.resource_id)
-    refute(player.track_id)
+    assert_equal('1rp7', Player.new(url: 'http://new.official.fm/playlists/1rp7').resource_id)
   end
 
   def test_resource_type

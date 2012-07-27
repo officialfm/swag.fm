@@ -5,14 +5,17 @@ class PlayersController < ApplicationController
   before_filter :find_player, only: %[destroy]
 
   def create
-    @player = Player.from_url(params[:player][:url])
-    if @player.save
-      respond_to do |format|
-        format.html { redirect_to '/' }
-        format.json { render json: @player }
+    if @player = Player.from_url(params[:player][:url])
+      if @player.save
+        respond_to do |format|
+          format.html { redirect_to '/' }
+          format.json { render json: @player }
+        end
+      else
+        render @player.errors, status: :unprocessable_entity
       end
     else
-      render @player.errors, status: :unprocessable_entity
+      render text: 'This track does not exist.', status: :unprocessable_entity
     end
   end
 
