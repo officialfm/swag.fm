@@ -1,6 +1,7 @@
 class Player
   constructor: () ->
     @tracks().on('click', @clickOnCover.bind(this))
+    $('#player').on('ended', @playNextTrack.bind(this))
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())
@@ -30,7 +31,14 @@ class Player
   playingTrack: () ->
     $('.track.playing')[0]
 
+  nextTrack: () ->
+    $('.track.playing').next()
+
   pausedTrack: () ->
     $('.track.paused')[0]
+
+  playNextTrack: () ->
+    @play(@nextTrack()) if @nextTrack()
+
 
 $(document).ready -> new Player
