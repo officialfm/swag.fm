@@ -1,7 +1,7 @@
 class Player
   constructor: () ->
     @tracks().on('click', @clickOnCover.bind(this))
-    $('#player').on('ended', @playNextTrack.bind(this))
+    $(@audio()).on('ended', @playNextTrack.bind(this))
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())
@@ -11,7 +11,7 @@ class Player
     else if (event.target == @pausedTrack())
       $(event.target).removeClass('paused')
       $(event.target).addClass('playing')
-      $('#player')[0].play()
+      @audio().play()
     else
       @play(event.target)
 
@@ -19,14 +19,14 @@ class Player
     $('.track')
 
   play: (track) ->
-    $('#player').attr('src', $(track).attr('data-stream-url') + '?api_version=2')
+    $(@audio()).attr('src', $(track).attr('data-stream-url') + '?api_version=2')
     @tracks().removeClass('playing')
     @tracks().removeClass('paused')
     $(track).addClass('playing')
-    $('#player')[0].play()
+    @audio().play()
 
   pause: () ->
-    $('#player')[0].pause()
+    @audio().pause()
 
   playingTrack: () ->
     $('.track.playing')[0]
@@ -40,5 +40,7 @@ class Player
   playNextTrack: () ->
     @play(@nextTrack()) if @nextTrack()
 
+  audio: () ->
+    $('#audio')[0]
 
 $(document).ready -> new Player

@@ -8,7 +8,7 @@ class TracksController < ApplicationController
     if @track = Track.from_url(params[:player][:url])
       if @track.save
         respond_to do |format|
-          format.html { redirect_to '/' }
+          format.html { }
           format.json { render json: @track }
         end
       else
