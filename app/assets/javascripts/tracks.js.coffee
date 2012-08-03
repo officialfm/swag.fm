@@ -2,6 +2,7 @@ class Player
   constructor: () ->
     @tracks().on('click', @clickOnCover.bind(this))
     $(@audio()).on('ended', @playNextTrack.bind(this))
+    $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())
@@ -42,5 +43,8 @@ class Player
 
   audio: () ->
     $('#audio')[0]
+
+  trackAdded: (event) ->
+    $(event.target).on('click', @clickOnCover.bind(this))
 
 $(document).ready -> new Player
