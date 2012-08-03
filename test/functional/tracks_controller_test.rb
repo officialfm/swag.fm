@@ -1,7 +1,10 @@
 require 'test_helper'
 
-class PlayersControllerControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class TracksControllerTest < ActionController::TestCase
+  def test_create
+    assert_difference('Track.count') do
+      post(:create, player: {url: 'http://official.fm/tracks/Dxt5'})
+    end
+    assert_response(:success)
+  end
 end

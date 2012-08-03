@@ -5,7 +5,7 @@ class PlayerCreator
     @url = @form.find('input')
 
   add: ->
-    url = prompt "Add a new player", "URL of the official.fm page"
+    url = prompt "Copy and paste a track URL from official.fm"
     if @match(url)
       @save(url)
     else
@@ -15,10 +15,14 @@ class PlayerCreator
     return url.match /official\.fm/
 
   save: (url) ->
-    @url.val(url)
-    @form.submit()
-    
+    $.ajax('/tracks', type: 'POST', success: @onSuccess.bind(this), error: @onError.bind(this),
+    data: {player: {url: url}})
 
+  onSuccess: (response) ->
+    $(response).insertBefore('.tracks .new')
+
+  onError: (response) ->
+    debugger
 
 $(document).ready ->
   playerCreator = new PlayerCreator()
