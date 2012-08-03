@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20120706130838) do
 
-  create_table "players", :force => true do |t|
+  create_table "tracks", :force => true do |t|
     t.string   "url",        :null => false
     t.string   "cover_url",  :null => false
     t.string   "stream_url", :null => false

@@ -1,12 +1,12 @@
 <section class="tracks">
-  <% if @players.empty? %>
+  <% if @tracks.empty? %>
     <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
   <% end %>
 
-  <% for player in @players %>
+  <% for track in @tracks %>
     <div class="track"
-      data-stream-url="<%= player.stream_url %>"
-      style="background-image: url('<%= player.cover_url %>')">
+      data-stream-url="<%= track.stream_url %>"
+      style="background-image: url('<%= track.cover_url %>')">
       <span class="iconic play"></span>
       <span class="iconic pause"></span>
     </div>
@@ -19,6 +19,6 @@
   <audio controls="controls" id="player" class="hidden"></audio>
 </section>
 
-<form id="create_player" action="<%= players_path %>" method="POST">
+<form id="create_player" action="<%= tracks_path %>" method="POST">
   <input type="hidden" value="" name="player[url]" />
 </form>

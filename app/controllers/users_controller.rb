@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def index
-    @players = Player.all
+    @tracks = Track.all
   end
 end

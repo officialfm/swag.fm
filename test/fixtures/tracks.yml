@@ -1,0 +1,10 @@
+je_ne_sais_quoi:
+  url: http://api.official.fm/tracks/2d8q/stream
+  stream_url: http://api.official.fm/tracks/2d8q/stream
+  cover_url: http://cdn.official.fm/medias/pictures/vn/vnlN_medium.jpg'
+
+slaugther_house:
+  url: http://official.fm/tracks/Dxt5
+  stream_url: http://api.official.fm/tracks/Dxt5/stream
+  cover_url: http://cdn.official.fm/medias/pictures/X0/X0hF_medium.jpg
+

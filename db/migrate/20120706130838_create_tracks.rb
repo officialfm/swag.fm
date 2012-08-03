@@ -1,6 +1,6 @@
-class CreatePlayers < ActiveRecord::Migration
+class CreateTracks < ActiveRecord::Migration
   def change
-    create_table :players do |t|
+    create_table :tracks do |t|
       t.string :url, null: false
       t.string :cover_url, null: false
       t.string :stream_url, null: false

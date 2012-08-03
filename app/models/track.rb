@@ -1,4 +1,4 @@
-class Player < ActiveRecord::Base
+class Track < ActiveRecord::Base
   attr_accessible :url
 
   #####################
@@ -6,7 +6,7 @@ class Player < ActiveRecord::Base
   #####################
 
   def self.from_url(url)
-    player = new(url: url) and player.fetch_metadata and player
+    track = new(url: url) and track.fetch_metadata and track
   end
 
   ######################
