@@ -1,6 +1,6 @@
 SwagFm::Application.routes.draw do
 
-  resources :session
+  resource :session, controller: 'session'
   resources :users
   resources :tracks, only: %w[index create destroy]
 
