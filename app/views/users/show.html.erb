@@ -1,9 +1,5 @@
 <section class="tracks">
-  <% if @tracks.empty? %>
-    <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
-  <% end %>
-
-  <%= render @tracks %>
+  <%= render @user.tracks %>
 
   <div class="new">
     <a href="javascript:void(0)" id="add_player" class="iconic plus_alt"></a>
@@ -12,6 +8,12 @@
   <audio controls="controls" id="audio" class="hidden"></audio>
 </section>
 
-<form id="create_player" action="<%= tracks_path %>" method="POST">
-  <input type="hidden" value="" name="player[url]" />
-</form>
+<% if current_user == @user %>
+  <% if @user.tracks.empty? %>
+    <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
+  <% end %>
+
+  <form id="create_player" action="<%= tracks_path %>" method="POST">
+    <input type="hidden" value="" name="player[url]" />
+  </form>
+<% end %>
