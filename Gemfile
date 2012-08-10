@@ -16,6 +16,8 @@ end
 
 gem 'therubyracer'  # Required by Uglifier
 
+gem 'bcrypt-ruby'
+
 # Commented while API isn't public.
 # gem 'officialfm', git: 'git@github.com:officialfm/officialfm-v2-ruby.git'
 # Required by Official.fm API.
