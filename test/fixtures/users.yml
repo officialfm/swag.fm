@@ -1,9 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  email: MyString
-  password_digest: MyString
-
-two:
-  email: MyString
-  password_digest: MyString
+alice:
+  email: alice@example.com
+  password_digest: "$2a$10$.nseyfaWpDztC4ciFu7IMOX5MSYt.5MrKdd98Gyq6Az2WBYsLtxmW" # => password

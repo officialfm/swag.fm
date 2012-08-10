@@ -1,0 +1,5 @@
+<%= form_for :session do |form| %>
+  <%= form.text_field :email, placeholder: 'Email' %>
+  <%= form.password_field :password, placeholder: 'Password' %>
+  <%= form.submit 'Login' %>
+<% end %>
