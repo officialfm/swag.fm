@@ -1,6 +1,8 @@
 <div class="track"
+  data-url="<%= track_url(track) %>"
   data-stream-url="<%= track.stream_url %>"
   style="background-image: url('<%= track.cover_url %>')">
   <span class="iconic play"></span>
   <span class="iconic pause"></span>
+  <span class="iconic trash_stroke" data-action="delete"></span>
 </div>

@@ -1,6 +1,8 @@
 class Player
   constructor: () ->
     @tracks().on('click', @clickOnCover.bind(this))
+    $('.tracks [data-action=delete]').on('click', @clickOnDelete.bind(this))
+
     $(@audio()).on('ended', @playNextTrack.bind(this))
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
 
@@ -15,6 +17,10 @@ class Player
       @audio().play()
     else
       @play(event.target)
+
+  clickOnDelete: (event) ->
+    track = $(event.target).closest('[data-url]')
+    $.ajax(track.attr('data-url'), type: 'DELETE', success: => track.remove())
 
   tracks: () ->
     $('.track')
@@ -46,5 +52,6 @@ class Player
 
   trackAdded: (event) ->
     $(event.target).on('click', @clickOnCover.bind(this))
+    $(event.target).find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
 
 $(document).ready -> new Player

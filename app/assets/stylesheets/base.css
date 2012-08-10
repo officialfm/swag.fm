@@ -16,11 +16,12 @@ body {
   height: 300px;
 }
 
-.track .play, .track .pause { display: none; }
+.track .iconic { display: none; }
 .track.playing .pause { display: block; }
 .track.paused .play { display: block; }
 
 .track:hover .play { display: block; }
+.track:hover .trash_stroke { display: block; }
 .track.playing:hover .play { display: none; }
 
 .track .iconic {
