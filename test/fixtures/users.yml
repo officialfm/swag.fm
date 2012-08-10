@@ -1,3 +1,4 @@
 alice:
+  id: 1
   email: alice@example.com
   password_digest: "$2a$10$.nseyfaWpDztC4ciFu7IMOX5MSYt.5MrKdd98Gyq6Az2WBYsLtxmW" # => password

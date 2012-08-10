@@ -1,6 +1,10 @@
 class Track < ActiveRecord::Base
   attr_accessible :url
 
+  belongs_to :user
+
+  validate :user, presence: true
+
   #####################
   ### Class methods ###
   #####################

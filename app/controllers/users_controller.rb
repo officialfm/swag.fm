@@ -4,13 +4,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    redirect_to(User.create!(params[:user]))
+    redirect_to(self.current_user = User.create!(params[:user]))
   end
 
   def show
-  end
-
-  def index
-    @tracks = Track.all
+    current_user
+    @tracks = User.find(params[:id]).tracks
   end
 end

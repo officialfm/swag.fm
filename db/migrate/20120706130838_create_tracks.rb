@@ -8,6 +8,7 @@ class CreateTracks < ActiveRecord::Migration
       t.string :url, null: false
       t.string :cover_url, null: false
       t.string :stream_url, null: false
+      t.integer :user_id, null: false
       t.timestamps
     end
     # add_foreign_key :tracks, :user_id, :users

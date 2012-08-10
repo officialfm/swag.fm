@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   before_filter :find_track, only: %[destroy]
 
   def create
-    if @track = Track.from_url(params[:player][:url])
+    if @track = current_user.tracks.from_url(params[:player][:url])
       if @track.save
         respond_to do |format|
           format.html { render(layout: false)}
@@ -20,7 +20,7 @@ class TracksController < ApplicationController
   end
 
   def index
-    @tracks = Track.where(url: params[:url])
+    @tracks = Tracks.where(url: params[:url])
     render json: @tracks
   end
 
