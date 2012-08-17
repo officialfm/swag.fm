@@ -20,7 +20,7 @@ class TracksController < ApplicationController
   end
 
   def index
-    @tracks = current_user.tracks.where(url: params[:url])
+    @tracks = Track.where(url: params[:url])
     render json: @tracks
   end
 
