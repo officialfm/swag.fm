@@ -2,6 +2,7 @@
 
 class TracksController < ApplicationController
 
+  before_filter :oauth_required
   before_filter :find_track, only: %[destroy]
 
   def create

@@ -3,11 +3,11 @@
   "version": "0.3",
   "description": "Add official.fm tracks and playlists to your swag.fm page",
   "background": { "scripts": [
+    "javascript/chrome_ex_oauth.js",
+    "javascript/chrome_ex_oauthsimple.js",
     "javascript/jquery-1.7.2.min.js",
-    "javascript/jquery-ujs.js",
-    "javascript/init.js",
-    "javascript/settings.js",
     "javascript/client.js",
+    "javascript/settings.js",
     "javascript/background.js"
   ]},
   "page_action": {
@@ -16,6 +16,6 @@
   },
   "options_page": "views/options.html",
   "update_url": "http://swag.fm/extensions/chrome.xml",
-  "permissions": ["cookies", "tabs", "<all_urls>"],
+  "permissions": ["tabs", "http://0.0.0.0:3000/" ],
   "manifest_version": 2
 }

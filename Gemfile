@@ -27,6 +27,9 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'hashie'
 
+# Gem used for user authentication in browser extension
+gem "oauth-plugin", "~> 0.4.0"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
