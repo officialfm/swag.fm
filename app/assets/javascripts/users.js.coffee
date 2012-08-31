@@ -16,7 +16,7 @@ class PlayerCreator
 
   save: (url) ->
     $.ajax('/tracks', type: 'POST', success: @onSuccess.bind(this), error: @onError.bind(this),
-    data: {player: {url: url}})
+    data: {url: url})
 
   onSuccess: (response) ->
     $(response).insertBefore('.tracks .new')

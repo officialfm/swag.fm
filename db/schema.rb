@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120824120629) do
     t.string   "cover_url",  :null => false
     t.string   "stream_url", :null => false
     t.integer  "user_id",    :null => false
+    t.integer  "position",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

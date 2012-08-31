@@ -3,7 +3,17 @@ class Track < ActiveRecord::Base
 
   belongs_to :user
 
+  ###################
+  ### Validations ###
+  ###################
+
   validate :user, presence: true
+
+  #################
+  ### Callbacks ###
+  #################
+
+  before_create :initialize_position
 
   #####################
   ### Class methods ###
@@ -32,4 +42,15 @@ class Track < ActiveRecord::Base
   def resource_type
     url.split('/')[-2]
   end
+
+  #######################
+  ### Private methods ###
+  #######################
+
+  private
+
+  def initialize_position
+    self.position ||= user.tracks.count + 1
+  end
+
 end
