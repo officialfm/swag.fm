@@ -19,6 +19,8 @@ class Player
     event = event.originalEvent
     draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
     event.target.parentNode.insertBefore(draggedTrack, event.target)
+    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
+    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())

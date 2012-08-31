@@ -43,6 +43,20 @@ class Track < ActiveRecord::Base
     url.split('/')[-2]
   end
 
+  def reorder(new_position)
+    if new_position < position
+      self.position = new_position
+      tracks = user.tracks[new_position-1..position-1]
+      tracks.each { |track| track.position += 1 if track != self }
+      (tracks + [self]).each(&:save!)
+    else
+      self.position = new_position
+      tracks = user.tracks[position-1..new_position-1]
+      tracks.each { |track| track.position -= 1 if track != self }
+      (tracks + [self]).each(&:save!)
+    end
+  end
+
   #######################
   ### Private methods ###
   #######################

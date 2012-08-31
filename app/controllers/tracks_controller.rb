@@ -20,6 +20,11 @@ class TracksController < ApplicationController
     end
   end
 
+  def update
+    current_user.tracks.find(params[:id]).reorder(params[:position].to_i)
+    render(text: 'OK')
+  end
+
   def index
     @tracks = Track.where(url: params[:url])
     render json: @tracks

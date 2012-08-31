@@ -1,12 +1,20 @@
 je_ne_sais_quoi:
   user_id: 1
+  position: 1
   url: http://api.official.fm/tracks/2d8q/stream
   stream_url: http://api.official.fm/tracks/2d8q/stream
   cover_url: http://cdn.official.fm/medias/pictures/vn/vnlN_medium.jpg'
 
 slaugther_house:
   user_id: 1
+  position: 2
   url: http://official.fm/tracks/Dxt5
   stream_url: http://api.official.fm/tracks/Dxt5/stream
   cover_url: http://cdn.official.fm/medias/pictures/X0/X0hF_medium.jpg
 
+guilty_conscience:
+  user_id: 1
+  position: 3
+  url: http://official.fm/tracks/7p4a
+  stream_url: http://api.official.fm/tracks/7p4a/stream
+  cover_url: http://cdn.official.fm/medias/pictures/x2/x2J9_medium.jpg
