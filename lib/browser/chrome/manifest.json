@@ -15,7 +15,6 @@
     "default_icon": "icon.ico",
     "default_title": "Add to your swag.fm page!"
   },
-  "options_page": "views/options.html",
   "update_url": "http://swag.fm/extensions/chrome.xml",
   "permissions": ["tabs", "http://0.0.0.0:3000/" ],
   "manifest_version": 2
