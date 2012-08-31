@@ -4,7 +4,7 @@ class SessionController < ApplicationController
 
   def create
     email, password = params[:session][:email], params[:session][:password]
-    if self.current_user = User.find_by_email(email).try(:authenticate, password)
+    if self.current_user = User.find_by_email(email).try(:authenticate, password) || nil
       respond_to do |format|
         format.html { redirect_to(current_user) }
         format.json { render json: {} }
