@@ -1,4 +1,7 @@
-<div class="track"
+<div
+  id="track_<%= track.id %>"
+  class="track"
+  draggable="true"
   data-url="<%= track_url(track) %>"
   data-stream-url="<%= track.stream_url %>"
   style="background-image: url('<%= track.cover_url %>')">

@@ -2,9 +2,23 @@ class Player
   constructor: () ->
     @tracks().on('click', @clickOnCover.bind(this))
     $('.tracks [data-action=delete]').on('click', @clickOnDelete.bind(this))
-
     $(@audio()).on('ended', @playNextTrack.bind(this))
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
+    $('.tracks').on('dragstart', @dragTrack.bind(this))
+    $('.tracks').on('dragover', @dragOverTrack.bind(this))
+    $('.tracks').on('drop', @dropTrack.bind(this))
+
+  dragTrack: (event) ->
+    event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('id'))
+
+  dragOverTrack: (event) ->
+    event.preventDefault()
+
+  dropTrack: (event) ->
+    event.preventDefault()
+    event = event.originalEvent
+    draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
+    event.target.parentNode.insertBefore(draggedTrack, event.target)
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())
