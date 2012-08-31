@@ -7,7 +7,6 @@
     "javascript/chrome_ex_oauthsimple.js",
     "javascript/jquery-1.7.2.min.js",
     "javascript/client.js",
-    "javascript/settings.js",
     "javascript/background.js"
   ]},
   "web_accessible_resources": ["chrome_ex_oauth.html"],
