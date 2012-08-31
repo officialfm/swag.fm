@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
   def current_user=(user)
     session[:user_id] = (@current_user = user).try(:id)
   end
+
+  def login_required
+    #TODO
+  end
+
+  def logged_in?
+    current_user
+  end
 end

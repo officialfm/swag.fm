@@ -10,6 +10,7 @@
     "javascript/settings.js",
     "javascript/background.js"
   ]},
+  "web_accessible_resources": ["chrome_ex_oauth.html"],
   "page_action": {
     "default_icon": "icon.ico",
     "default_title": "Add to your swag.fm page!"

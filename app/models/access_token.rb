@@ -1,4 +1,6 @@
 class AccessToken < OauthToken
+
+  attr_accessible :user, :client_application
   validates_presence_of :user, :secret
   before_create :set_authorized_at
 
