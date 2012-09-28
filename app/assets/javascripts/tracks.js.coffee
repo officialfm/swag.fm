@@ -8,6 +8,8 @@ class Player
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
     @playButton().on('click', @clickOnPlayButton.bind(this))
+    @nextButton().on('click', @clickOnNextButton.bind(this))
+    @previousButton().on('click', @clickOnPreviousButton.bind(this))
 
   dragTrack: (event) ->
     event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('id'))
@@ -63,11 +65,17 @@ class Player
   nextTrack: () ->
     $('.track.playing').next()
 
+  previousTrack: () ->
+    $('.track.playing').prev()
+
   pausedTrack: () ->
     $('.track.paused')[0]
 
   playNextTrack: () ->
     @play(@nextTrack()) if @nextTrack()
+
+  playPreviousTrack: () ->
+    @play(@previousTrack()) if @previousTrack()
 
   audio: () ->
     $('#audio')[0]
@@ -79,11 +87,22 @@ class Player
   playButton: () ->
     $('#play-button')
 
+  nextButton: () ->
+    $('#next-button')
+
+  previousButton: () ->
+    $('#previous-button')
+
   clickOnPlayButton: () ->
     if (@playingTrack())
       @pause()
     else if (@pausedTrack())
       @play()
 
+  clickOnNextButton: () ->
+    @playNextTrack()
+
+  clickOnPreviousButton: () ->
+    @playPreviousTrack()
 
 $(document).ready -> new Player
