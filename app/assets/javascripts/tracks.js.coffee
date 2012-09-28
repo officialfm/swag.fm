@@ -94,10 +94,13 @@ class Player
     $('#previous-button')
 
   clickOnPlayButton: () ->
+    debugger;
     if (@playingTrack())
       @pause()
     else if (@pausedTrack())
       @play()
+    else
+    @play(@tracks()[0])
 
   clickOnNextButton: () ->
     @playNextTrack()
