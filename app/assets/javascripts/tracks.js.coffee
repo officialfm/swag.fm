@@ -47,15 +47,15 @@ class Player
       @tracks().removeClass('paused')
       $(track).addClass('playing')
     @audio().play()
-    @playButton().addClass('play')
-    @playButton().removeClass('pause')
+    @playButton().addClass('pause')
+    @playButton().removeClass('play')
     $(@pausedTrack()).addClass('playing')
     $(@pausedTrack()).removeClass('paused')
 
   pause: () ->
     @audio().pause()
-    @playButton().addClass('pause')
-    @playButton().removeClass('play')
+    @playButton().addClass('play')
+    @playButton().removeClass('pause')
     $(@playingTrack()).addClass('paused')
     $(@playingTrack()).removeClass('playing')
 
@@ -100,7 +100,7 @@ class Player
     else if (@pausedTrack())
       @play()
     else
-    @play(@tracks()[0])
+      @play(@tracks()[0])
 
   clickOnNextButton: () ->
     @playNextTrack()
