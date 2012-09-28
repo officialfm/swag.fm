@@ -40,22 +40,6 @@ body {
   cursor: pointer;
 }
 
-.tracks .new {
-  float: left;
-  font-size: 32pt;
-  text-align: center;
-  width: 300px;
-  height: 300px;
-}
-
-.tracks .new a {
-  color: #CCC;
-  text-decoration: none;
-  vertical-align: -130px;
-}
-.tracks .new a:hover { color: #AAA; }
-.tracks .new a:active { color: #888; }
-
 .hidden {
   display: none;
 }

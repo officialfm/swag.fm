@@ -27,5 +27,5 @@ class PlayerCreator
 $(document).ready ->
   playerCreator = new PlayerCreator()
 
-  $('#add_player').bind 'click', ->
+  $('#add-button').bind 'click', ->
     playerCreator.add()

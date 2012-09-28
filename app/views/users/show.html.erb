@@ -1,12 +1,6 @@
 <section class="tracks">
   <%= render @user.tracks %>
 
-  <% if current_user == @user %>
-    <div class="new">
-      <a href="javascript:void(0)" id="add_player" class="iconic plus_alt"></a>
-    </div>
-  <% end %>
-
   <audio controls="controls" id="audio" class="hidden"></audio>
 </section>
 
