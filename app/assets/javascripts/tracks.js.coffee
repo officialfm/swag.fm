@@ -7,6 +7,7 @@ class Player
     $('.tracks').on('dragstart', @dragTrack.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
+    @playButton().on('click', @clickOnPlayButton.bind(this))
 
   dragTrack: (event) ->
     event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('id'))
@@ -24,13 +25,9 @@ class Player
 
   clickOnCover: (event) ->
     if (event.target == @playingTrack())
-      $(event.target).removeClass('playing')
-      $(event.target).addClass('paused')
       @pause()
     else if (event.target == @pausedTrack())
-      $(event.target).removeClass('paused')
-      $(event.target).addClass('playing')
-      @audio().play()
+      @play()
     else
       @play(event.target)
 
@@ -42,14 +39,23 @@ class Player
     $('.track')
 
   play: (track) ->
-    $(@audio()).attr('src', $(track).attr('data-stream-url') + '?api_version=2')
-    @tracks().removeClass('playing')
-    @tracks().removeClass('paused')
-    $(track).addClass('playing')
+    if (track)
+      $(@audio()).attr('src', $(track).attr('data-stream-url') + '?api_version=2')
+      @tracks().removeClass('playing')
+      @tracks().removeClass('paused')
+      $(track).addClass('playing')
     @audio().play()
+    @playButton().addClass('play')
+    @playButton().removeClass('pause')
+    $(@pausedTrack()).addClass('playing')
+    $(@pausedTrack()).removeClass('paused')
 
   pause: () ->
     @audio().pause()
+    @playButton().addClass('pause')
+    @playButton().removeClass('play')
+    $(@playingTrack()).addClass('paused')
+    $(@playingTrack()).removeClass('playing')
 
   playingTrack: () ->
     $('.track.playing')[0]
@@ -69,5 +75,15 @@ class Player
   trackAdded: (event) ->
     $(event.target).on('click', @clickOnCover.bind(this))
     $(event.target).find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+
+  playButton: () ->
+    $('#play-button')
+
+  clickOnPlayButton: () ->
+    if (@playingTrack())
+      @pause()
+    else if (@pausedTrack())
+      @play()
+
 
 $(document).ready -> new Player
