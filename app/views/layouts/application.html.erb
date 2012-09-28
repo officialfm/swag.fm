@@ -8,15 +8,15 @@
 </head>
 <body>
   <%= yield %>
-  <% if current_user %>
-    <%= link_to 'Logout', session_path, method: 'DELETE' %>
-  <% else %>
-    <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
-  <% end %>
   <footer>
     <span class="iconic first" id="previous-button"></span>
     <span class="iconic play" id="play-button"></span>
     <span class="iconic last" id="next-button"></span>
+    <% if current_user %>
+      <%= link_to 'Logout', session_path, method: 'DELETE' %>
+    <% else %>
+      <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
+    <% end %>
   </footer>
 </body>
 </html>
