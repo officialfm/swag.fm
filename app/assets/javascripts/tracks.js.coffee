@@ -1,8 +1,8 @@
 class Player
   constructor: () ->
-    $('.tracks [data-action=play]').on('click', @clickOnPlay.bind(this))
-    $('.tracks [data-action=pause]').on('click', @clickOnPause.bind(this))
-    $('.tracks [data-action=delete]').on('click', @clickOnDelete.bind(this))
+    $('[data-action=play]').on('click', @clickOnPlay.bind(this))
+    $('[data-action=pause]').on('click', @clickOnPause.bind(this))
+    $('[data-action=delete]').on('click', @clickOnDelete.bind(this))
     $(@audio()).on('ended', @playNextTrack.bind(this))
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
     $('.tracks').on('dragstart', @dragTrack.bind(this))
