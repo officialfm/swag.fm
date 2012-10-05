@@ -63,7 +63,7 @@ class Player
     $('.track.playing')[0]
 
   nextTrack: () ->
-    $('.track.playing').next()
+    $('.track.playing').next()[0] || $('.track.paused').next()[0]
 
   previousTrack: () ->
     $('.track.playing').prev()
@@ -94,7 +94,6 @@ class Player
     $('#previous-button')
 
   clickOnPlayButton: () ->
-    debugger;
     if (@playingTrack())
       @pause()
     else if (@pausedTrack())
