@@ -3,17 +3,23 @@ class Player
     $('[data-action=play]').on('click', @clickOnPlay.bind(this))
     $('[data-action=pause]').on('click', @clickOnPause.bind(this))
     $('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+
     $(@audio()).on('ended', @playNextTrack.bind(this))
+
+
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
-    $('.tracks').on('dragstart', @dragTrack.bind(this))
+    $('[data-action=move]').on('dragstart', @dragTrack.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
+
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
 
   dragTrack: (event) ->
-    event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('id'))
+    console.log('drag')
+    console.log($(event.target).attr('data-target'))
+    event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('data-target'))
 
   dragOverTrack: (event) ->
     event.preventDefault()
@@ -23,8 +29,9 @@ class Player
     event = event.originalEvent
     draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
     event.target.parentNode.insertBefore(draggedTrack, event.target)
-    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
-    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
+    @tracks().each (index, track) ->
+      $(track).attr('data-position', index + 1)
+      $.ajax($(track).attr('data-url'), type: 'PUT', data: {position: $(track).attr('data-position')})
 
   clickOnPlay: (event) ->
     clickedTrack = $('#' + $(event.target).attr('data-target'))[0]

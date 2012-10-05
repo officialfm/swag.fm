@@ -21,6 +21,7 @@ body {
 .track.paused .play { display: block; }
 
 .track:hover .play { display: block; }
+.track:hover .move { display: block; }
 .track:hover .trash_stroke { display: block; }
 .track.playing:hover .play { display: none; }
 
