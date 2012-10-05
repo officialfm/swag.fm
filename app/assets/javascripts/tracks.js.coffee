@@ -1,6 +1,7 @@
 class Player
   constructor: () ->
-    @tracks().on('click', @clickOnCover.bind(this))
+    $('.tracks [data-action=play]').on('click', @clickOnPlay.bind(this))
+    $('.tracks [data-action=pause]').on('click', @clickOnPause.bind(this))
     $('.tracks [data-action=delete]').on('click', @clickOnDelete.bind(this))
     $(@audio()).on('ended', @playNextTrack.bind(this))
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
@@ -25,13 +26,15 @@ class Player
     @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
     $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
-  clickOnCover: (event) ->
-    if (event.target == @playingTrack())
-      @pause()
-    else if (event.target == @pausedTrack())
+  clickOnPlay: (event) ->
+    clickedTrack = $('#' + $(event.target).attr('data-target'))[0]
+    if (clickedTrack == @pausedTrack())
       @play()
     else
-      @play(event.target)
+      @play(clickedTrack)
+
+  clickOnPause: (event) ->
+    @pause()
 
   clickOnDelete: (event) ->
     track = $(event.target).closest('[data-url]')
@@ -81,7 +84,8 @@ class Player
     $('#audio')[0]
 
   trackAdded: (event) ->
-    $(event.target).on('click', @clickOnCover.bind(this))
+    $(event.target).find('[data-action=play]').on('click', @clickOnPlay.bind(this))
+    $(event.target).find('[data-action=pause]').on('click', @clickOnPause.bind(this))
     $(event.target).find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
 
   playButton: () ->
