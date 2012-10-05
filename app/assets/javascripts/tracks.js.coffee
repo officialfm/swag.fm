@@ -28,7 +28,10 @@ class Player
     event.preventDefault()
     event = event.originalEvent
     draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
-    event.target.parentNode.insertBefore(draggedTrack, event.target)
+    if ($(draggedTrack).attr('data-position') < $(event.target).attr('data-position'))
+      event.target.parentNode.insertBefore(draggedTrack, event.target.nextSibling)
+    else
+      event.target.parentNode.insertBefore(draggedTrack, event.target)
     @tracks().each (index, track) ->
       $(track).attr('data-position', index + 1)
       $.ajax($(track).attr('data-url'), type: 'PUT', data: {position: $(track).attr('data-position')})
