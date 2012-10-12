@@ -78,6 +78,7 @@ footer {
 
 
 footer section.controls {
+  float: left;
   font-size: 2em;
   color: #555;
   vertical-align: middle;
@@ -90,6 +91,10 @@ footer section.controls .iconic {
 footer section.controls .iconic:hover {
   cursor: pointer;
   color: #333;
+}
+
+footer section.settings {
+  float: right;
 }
 
 ::-webkit-scrollbar { width: 5px; }

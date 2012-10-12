@@ -15,11 +15,13 @@
       <span class="iconic last" id="next-button" title="Next track"></span>
       <span class="iconic plus" id="add-button" title="Add a track"></span>
     </section>
-    <% if current_user %>
-      <%= link_to 'Logout', session_path, method: 'DELETE' %>
-    <% else %>
-      <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
-    <% end %>
+    <section class="settings">
+      <% if current_user %>
+        <%= link_to 'Logout', session_path, method: 'DELETE' %>
+      <% else %>
+        <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
+      <% end %>
+    </section>
   </footer>
 </body>
 </html>
