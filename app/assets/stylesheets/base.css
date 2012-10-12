@@ -26,7 +26,7 @@ body {
 .track.paused .play { display: block; }
 .track.playing .pause { display: block; }
 
-.track:hover .iconic { display: block; }
+.track:hover .iconic { display: block; cursor: pointer; }
 .track:hover .pause { display: none; }
 .track.playing:hover .play { display: none; }
 .track.playing:hover .iconic.pause { display: block; }
@@ -93,5 +93,5 @@ footer section.controls .iconic:hover {
 }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background-color: #000; }
+::-webkit-scrollbar-track { background-color: #111; }
 ::-webkit-scrollbar-thumb { background-color: #222; }
