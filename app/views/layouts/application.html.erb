@@ -13,7 +13,9 @@
       <span class="iconic first" id="previous-button" title="Previous track"></span>
       <span class="iconic play" id="play-button" title="Play"></span>
       <span class="iconic last" id="next-button" title="Next track"></span>
-      <span class="iconic plus" id="add-button" title="Add a track"></span>
+      <% if current_user %>
+        <span class="iconic plus" id="add-button" title="Add a track"></span>
+      <% end %>
     </section>
     <section class="settings">
       <% if current_user %>
