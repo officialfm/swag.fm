@@ -53,3 +53,20 @@ footer {
   height: 40px;
   background-color: #111;
 }
+
+
+footer section.controls {
+  margin-left: 20px;
+  font-size: 2em;
+  color: #555;
+  vertical-align: middle;
+}
+
+footer section.controls .iconic {
+  margin: 5px;
+}
+
+footer section.controls .iconic:hover {
+  cursor: pointer;
+  color: #333;
+}
