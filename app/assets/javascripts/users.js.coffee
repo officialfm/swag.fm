@@ -21,6 +21,7 @@ class PlayerCreator
   onSuccess: (response) ->
     tracks = $('.tracks')
     tracks[tracks.size() - 1].insertBefore($(response)[0])
+    $('.blank.slate').remove()
 
   onError: (response) ->
     debugger

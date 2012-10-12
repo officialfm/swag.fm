@@ -6,7 +6,9 @@
 
 <% if current_user == @user %>
   <% if @user.tracks.empty? %>
-    <h1>Copy an official.fm URL and then, click the button below to paste it !</h1>
+    <div class="blank slate">
+      Copy a URL from a track hosted on Official.fm, then click on the plus button below to paste it !
+    </div>
   <% end %>
 
   <form id="create_player" action="<%= tracks_path %>" method="POST">
