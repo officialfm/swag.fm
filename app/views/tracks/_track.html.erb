@@ -6,11 +6,11 @@
   data-stream-url="<%= track.stream_url %>"
   style="background-image: url('<%= track.cover_url %>')">
   <div class="primary controls">
-    <span class="iconic play" data-action="play" data-target="track_<%= track.id %>"></span>
-    <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>"></span>
+    <span class="iconic play" data-action="play" data-target="track_<%= track.id %>" title="Play"></span>
+    <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>" title="Pause"></span>
   </div>
   <div class="secondary controls">
-    <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true"></span>
-    <span class="iconic trash_stroke" data-action="delete" data-target="track_<%= track.id %>"></span>
+    <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true" title="Move"></span>
+    <span class="iconic trash_stroke" data-action="delete" data-target="track_<%= track.id %>" title="Delete"></span>
   </div>
 </div>

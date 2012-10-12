@@ -10,10 +10,10 @@
   <%= yield %>
   <footer>
     <section class="controls">
-      <span class="iconic first" id="previous-button"></span>
-      <span class="iconic play" id="play-button"></span>
-      <span class="iconic last" id="next-button"></span>
-      <span class="iconic plus" id="add-button"></span>
+      <span class="iconic first" id="previous-button" title="Previous track"></span>
+      <span class="iconic play" id="play-button" title="Play"></span>
+      <span class="iconic last" id="next-button" title="Next track"></span>
+      <span class="iconic plus" id="add-button" title="Add a track"></span>
     </section>
     <% if current_user %>
       <%= link_to 'Logout', session_path, method: 'DELETE' %>
