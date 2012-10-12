@@ -2,6 +2,7 @@ body {
   background-color: #000;
   color: #CCC;
   font-family: Helvetica, Arial, Sans-serif;
+  margin: 0;
 }
 
 .tracks {
@@ -56,7 +57,6 @@ footer {
 
 
 footer section.controls {
-  margin-left: 20px;
   font-size: 2em;
   color: #555;
   vertical-align: middle;
