@@ -10,6 +10,7 @@ body {
 }
 
 .track {
+  position: relative;
   margin: 0;
   float: left;
   width: 200px;
@@ -17,14 +18,18 @@ body {
   background-size: 200px 200px;
 }
 
-.track .iconic { display: none; }
-.track.playing .pause { display: block; }
-.track.paused .play { display: block; }
+.track { opacity: 0.6; }
+.track:hover, .track.paused, .track.playing { opacity: 1; }
 
-.track:hover .play { display: block; }
-.track:hover .move { display: block; }
-.track:hover .trash_stroke { display: block; }
+.track .iconic { display: none }
+
+.track.paused .play { display: block; }
+.track.playing .pause { display: block; }
+
+.track:hover .iconic { display: block; }
+.track:hover .pause { display: none; }
 .track.playing:hover .play { display: none; }
+.track.playing:hover .iconic.pause { display: block; }
 
 .track .iconic {
   font-size: 2em;
@@ -38,9 +43,25 @@ body {
   opacity: 0.8;
 }
 
-.track:hover {
-  cursor: pointer;
+.track .primary.controls {
+  /* TODO: Hackish center */
+  position: absolute;
+  left: 70px;
+  top: 70px;
 }
+
+.track .secondary.controls {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.5em;
+  width: 100%;
+}
+
+.track .secondary.controls .iconic {
+  float: right;
+  margin: 2px;
+}
+
 
 .hidden {
   display: none;
