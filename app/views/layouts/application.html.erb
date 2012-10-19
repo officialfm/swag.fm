@@ -18,6 +18,8 @@
       <% end %>
     </section>
     <section class="settings">
+      <%= link_to 'Discover swag people', users_path %>
+      <%= link_to 'Discover latest tracks', tracks_path %>
       <% if current_user %>
         <% if current_user != @user %>
           <%= link_to 'My swag playlist', current_user %>

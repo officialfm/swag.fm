@@ -12,6 +12,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @tracks = Track.limit(50)
+    @users = User.all
   end
 end

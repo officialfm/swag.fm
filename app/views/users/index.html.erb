@@ -1,4 +1,5 @@
-<section class="tracks">
-  <%= render @tracks %>
-  <audio controls="controls" id="audio" class="hidden"></audio>
-</section>
+<h1>Discover music listened by other swag users !</h1>
+
+<% for user in @users %>
+  <%= link_to user.name, user %> (<%= user.tracks.count %> tracks)<br/>
+<% end %>

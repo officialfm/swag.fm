@@ -26,8 +26,11 @@ class TracksController < ApplicationController
   end
 
   def index
-    @tracks = Track.where(url: params[:url])
-    render json: @tracks
+    @tracks = Track.limit(50)
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @tracks = Track.where(url: params[:url]) }
+    end
   end
 
   def destroy

@@ -16,5 +16,5 @@ SwagFm::Application.routes.draw do
     get :chrome, on: :collection
   end
 
-  root to: 'users#index'
+  root to: 'tracks#index'
 end
