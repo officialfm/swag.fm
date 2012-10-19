@@ -3,6 +3,7 @@ class Player
     $('[data-action=play]').on('click', @clickOnPlay.bind(this))
     $('[data-action=pause]').on('click', @clickOnPause.bind(this))
     $('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+    $('[data-action=import]').on('click', @clickOnImport.bind(this))
 
     $(@audio()).on('ended', @playNextTrack.bind(this))
 
@@ -50,6 +51,9 @@ class Player
   clickOnDelete: (event) ->
     track = $(event.target).closest('[data-url]')
     $.ajax(track.attr('data-url'), type: 'DELETE', success: => track.remove())
+
+  clickOnImport: (event) ->
+    $.ajax('/tracks', type: 'POST', data: {url: $(event.target).attr('data-url')}, success: -> alert('Track added.'))
 
   tracks: () ->
     $('.track')
