@@ -33,14 +33,24 @@ body {
 
 .track .iconic {
   font-size: 2em;
-  color: #000;
+  color: #222;
   text-align: center;
   width: 2em;
   height: 2em;
   line-height: 2em;
   border-radius: 5em;
-  background: rgba(200, 200, 200, .8);
+  background: rgba(192, 192, 192, .8);
   opacity: 0.8;
+}
+
+.track .iconic:hover {
+  color: #111;
+  background: rgba(176, 176, 176, .9);
+}
+
+.track .iconic:active {
+  color: #000;
+  background: rgba(160, 160, 160, 1);
 }
 
 .track .primary.controls {
@@ -91,6 +101,10 @@ footer section.controls .iconic {
 footer section.controls .iconic:hover {
   cursor: pointer;
   color: #333;
+}
+
+footer section.controls .iconic:active {
+  color: #222;
 }
 
 footer section.settings {
