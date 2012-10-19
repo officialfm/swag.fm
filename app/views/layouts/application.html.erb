@@ -19,6 +19,9 @@
     </section>
     <section class="settings">
       <% if current_user %>
+        <% if current_user != @user %>
+          <%= link_to 'My swag playlist', current_user %>
+        <% end %>
         <%= link_to 'Logout', session_path, method: 'DELETE' %>
       <% else %>
         <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
