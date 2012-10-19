@@ -27,11 +27,12 @@ class Player
   dropTrack: (event) ->
     event.preventDefault()
     event = event.originalEvent
+    target = $(event.target).closest('[data-url]')[0]
     draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
-    if ($(draggedTrack).attr('data-position') < $(event.target).attr('data-position'))
-      event.target.parentNode.insertBefore(draggedTrack, event.target.nextSibling)
+    if ($(draggedTrack).attr('data-position') < $(target).attr('data-position'))
+      target.parentNode.insertBefore(draggedTrack, target.nextSibling)
     else
-      event.target.parentNode.insertBefore(draggedTrack, event.target)
+      target.parentNode.insertBefore(draggedTrack, target)
     @tracks().each (index, track) ->
       $(track).attr('data-position', index + 1)
       $.ajax($(track).attr('data-url'), type: 'PUT', data: {position: $(track).attr('data-position')})
