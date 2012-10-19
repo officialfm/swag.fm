@@ -6,7 +6,13 @@ body {
 }
 
 .tracks {
- width: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 40px;
+  overflow: auto;
 }
 
 .track {
@@ -72,6 +78,7 @@ body {
   margin: 2px;
 }
 
+.track .secondary.controls a.iconic { text-decoration: none; }
 
 .hidden {
   display: none;
