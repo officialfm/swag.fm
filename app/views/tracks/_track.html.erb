@@ -10,7 +10,7 @@
     <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>" title="Pause"></span>
   </div>
   <div class="secondary controls">
-    <% if current_user %>
+    <% if current_user && current_user == @user %>
       <span class="iconic trash_stroke" data-action="delete" data-target="track_<%= track.id %>" title="Delete"></span>
       <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true" title="Move"></span>
     <% end %>
