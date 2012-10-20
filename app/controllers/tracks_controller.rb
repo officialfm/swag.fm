@@ -26,7 +26,7 @@ class TracksController < ApplicationController
   end
 
   def index
-    @tracks = Track.limit(50)
+    @tracks = Track.limit(50).order('created_at DESC')
     respond_to do |format|
       format.html { render }
       format.json { render json: @tracks = Track.where(url: params[:url]) }
