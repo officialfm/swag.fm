@@ -19,8 +19,8 @@ class PlayerCreator
     data: {url: url})
 
   onSuccess: (response) ->
-    tracks = $('.tracks')
-    tracks[tracks.size() - 1].insertBefore($(response)[0])
+    tracks = $('.tracks')[0]
+    tracks.insertBefore($(response)[0], tracks.firstChild)
     $('.blank.slate').remove()
 
   onError: (response) ->
