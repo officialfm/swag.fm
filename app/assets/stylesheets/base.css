@@ -34,8 +34,10 @@ body {
 
 .track:hover .iconic { display: block; cursor: pointer; }
 .track:hover .pause { display: none; }
+
 .track.playing:hover .play { display: none; }
 .track.playing:hover .iconic.pause { display: block; }
+.track .iconic.move:hover { cursor: move; }
 
 .track .iconic {
   font-size: 2em;
