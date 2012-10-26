@@ -1,5 +1,7 @@
 class Player
   constructor: () ->
+    $("html").keydown(@keyPressed.bind(this))
+
     $('[data-action=play]').on('click', @clickOnPlay.bind(this))
     $('[data-action=pause]').on('click', @clickOnPause.bind(this))
     $('[data-action=delete]').on('click', @clickOnDelete.bind(this))
@@ -37,6 +39,11 @@ class Player
     @tracks().each (index, track) ->
       $(track).attr('data-position', index + 1)
       $.ajax($(track).attr('data-url'), type: 'PUT', data: {position: $(track).attr('data-position')})
+
+  keyPressed: (event) ->
+    if (event.which == 32) # 32 is space key code.
+      event.preventDefault()
+      @togglePlayback()
 
   clickOnPlay: (event) ->
     clickedTrack = $('#' + $(event.target).attr('data-target'))[0]
@@ -113,6 +120,9 @@ class Player
     $('#previous-button')
 
   clickOnPlayButton: () ->
+    @togglePlayback()
+
+  togglePlayback: () ->
     if (@playingTrack())
       @pause()
     else if (@pausedTrack())
