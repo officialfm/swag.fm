@@ -30,7 +30,7 @@ class Player
     event = event.originalEvent
     target = $(event.target).closest('[data-url]')[0]
     draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
-    if ($(draggedTrack).attr('data-position') < $(target).attr('data-position'))
+    if (parseInt($(draggedTrack).attr('data-position')) < parseInt($(target).attr('data-position')))
       target.parentNode.insertBefore(draggedTrack, target.nextSibling)
     else
       target.parentNode.insertBefore(draggedTrack, target)
