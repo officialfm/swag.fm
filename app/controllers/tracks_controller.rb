@@ -6,7 +6,8 @@ class TracksController < ApplicationController
   before_filter :find_track, only: %[destroy]
 
   def create
-    if @track = current_user.tracks.from_url(params[:url])
+    @track = Track.from_url(params[:url])
+    if current_user.add_track(@track)
       if @track.save
         respond_to do |format|
           format.html { render(layout: false)}

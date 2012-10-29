@@ -9,12 +9,6 @@ class Track < ActiveRecord::Base
 
   validate :user, presence: true
 
-  #################
-  ### Callbacks ###
-  #################
-
-  before_create :initialize_position
-
   #####################
   ### Class methods ###
   #####################
@@ -55,16 +49,6 @@ class Track < ActiveRecord::Base
       tracks.each { |track| track.position -= 1 if track != self }
       (tracks + [self]).each(&:save!)
     end
-  end
-
-  #######################
-  ### Private methods ###
-  #######################
-
-  private
-
-  def initialize_position
-    self.position ||= user.tracks.count + 1
   end
 
 end
