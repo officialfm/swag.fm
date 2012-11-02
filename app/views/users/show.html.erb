@@ -17,3 +17,7 @@
     <input type="hidden" value="" name="player[url]" />
   </form>
 <% end %>
+
+<% if @user.tracks.empty? %>
+  <h2>Too bad, that user hasn't any favorite track yet :-(</h2>
+<% end %>
