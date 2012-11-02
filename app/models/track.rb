@@ -26,6 +26,8 @@ class Track < ActiveRecord::Base
     if track = SwagFm.official.track(resource_id, fields: 'cover,streaming')
       self.cover_url = track.cover.urls.medium
       self.stream_url = track.streaming.http
+      self.artist = track.artist
+      self.title = track.title
     end
   end
 
