@@ -68,6 +68,7 @@ class Player
     @playButton().removeClass('play')
     $(@pausedTrack()).addClass('playing')
     $(@pausedTrack()).removeClass('paused')
+    $('#current-track').text($(@playingTrack()).attr('title'))
 
   pause: () ->
     @audio().pause()

@@ -16,6 +16,7 @@
       <% if current_user %>
         <span class="iconic plus" id="add-button" title="Add a track"></span>
       <% end %>
+      <span id="current-track"></span>
     </section>
     <section class="settings">
       <% if @user && current_user != @user %>
