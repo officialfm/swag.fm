@@ -92,6 +92,7 @@ footer {
   left: 0;
   right: 0;
   height: 40px;
+  line-height: 40px;
   background-color: #111;
 }
 
@@ -103,15 +104,29 @@ footer section.controls {
   vertical-align: middle;
 }
 
+footer section.settings a.active,
+footer section.settings a.active:hover,
+footer section.settings a.active:active {
+  color: #888;
+}
+
+footer section.settings a {
+  text-decoration: none;
+  padding-right: 5px;
+  color: #555;
+}
+
 footer section.controls .iconic {
   margin: 5px;
 }
 
+footer section.settings a:hover,
 footer section.controls .iconic:hover {
   cursor: pointer;
   color: #333;
 }
 
+footer section.settings a:active,
 footer section.controls .iconic:active {
   color: #222;
 }
