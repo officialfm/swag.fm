@@ -5,11 +5,11 @@ class PlayerCreator
     @url = @form.find('input')
 
   add: ->
-    url = prompt "Copy and paste a track URL from official.fm"
+    url = prompt "Copy a track URL from official.fm or soundcloud.com."
     if @match(url)
       @save(url)
     else
-      alert "This is not an official.fm url!"
+      alert "This is neither a URL from official.fm not soundcloud.com."
 
   match: (url) ->
     return url.match(/official\.fm/) || url.match(/soundcloud\.com/)
