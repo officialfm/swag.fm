@@ -1,14 +1,13 @@
 body {
-  background-color: #000;
-  color: #CCC;
+  background-color: #0C0C0C;
+  color: #AAA;
   font-family: Helvetica, Arial, Sans-serif;
   margin: 0;
 }
 
-.tracks a, .users a { color: #888; }
-.tracks a:hover, .users a:hover { color: #555; }
-.tracks a:active, .users a:active { color: #333; }
-.users .track-count { color: #555; }
+a { color: #AAA; }
+a:hover { color: #888; }
+a:active { color: #666; }
 
 .tracks {
   width: 100%;

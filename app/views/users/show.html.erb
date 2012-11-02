@@ -16,7 +16,7 @@
   <% end %>
 
   <% if @user.tracks.empty? %>
-    <h2>Too bad, that user hasn't any favorite track yet :-(</h2>
+    <h2>Too bad ... that user doesn't have any favorites yet :-(</h2>
     <% if request.referer %>
       <%= link_to 'Back to previous page', request.referer %>
     <% else %>
