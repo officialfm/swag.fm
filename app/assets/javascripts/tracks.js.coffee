@@ -2,26 +2,18 @@ class Player
   constructor: () ->
     $("html").keydown(@keyPressed.bind(this))
 
-    $('[data-action=play]').on('click', @clickOnPlay.bind(this))
-    $('[data-action=pause]').on('click', @clickOnPause.bind(this))
-    $('[data-action=delete]').on('click', @clickOnDelete.bind(this))
-    $('[data-action=import]').on('click', @clickOnImport.bind(this))
-
     $(@audio()).on('ended', @playNextTrack.bind(this))
 
-
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
-    $('[data-action=move]').on('dragstart', @dragTrack.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
+    @listenTrackEvents($('.tracks'))
 
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
 
   dragTrack: (event) ->
-    console.log('drag')
-    console.log($(event.target).attr('data-target'))
     event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('data-target'))
 
   dragOverTrack: (event) ->
@@ -106,9 +98,14 @@ class Player
     $('#audio')[0]
 
   trackAdded: (event) ->
-    $(event.target).find('[data-action=play]').on('click', @clickOnPlay.bind(this))
-    $(event.target).find('[data-action=pause]').on('click', @clickOnPause.bind(this))
-    $(event.target).find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+    @listenTrackEvents($(event.target))
+
+  listenTrackEvents: (collection) ->
+    collection.find('[data-action=play]').on('click', @clickOnPlay.bind(this))
+    collection.find('[data-action=pause]').on('click', @clickOnPause.bind(this))
+    collection.find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+    collection.find('[data-action=import]').on('click', @clickOnImport.bind(this))
+    collection.find('[data-action=move]').on('dragstart', @dragTrack.bind(this))
 
   playButton: () ->
     $('#play-button')

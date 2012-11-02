@@ -6,11 +6,12 @@ class TracksController < ApplicationController
   before_filter :find_track, only: %[destroy]
 
   def create
+    @user = current_user
     @track = Track.from_url(params[:url])
     if current_user.add_track(@track)
       if @track.save
         respond_to do |format|
-          format.html { render(layout: false)}
+          format.html { render(layout: false) }
           format.json { render json: @track }
         end
       else
