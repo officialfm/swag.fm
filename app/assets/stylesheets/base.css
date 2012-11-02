@@ -5,9 +5,9 @@ body {
   margin: 0;
 }
 
-.users a { color: #888; }
-.users a:hover { color: #555; }
-.users a:active { color: #333; }
+.tracks a, .users a { color: #888; }
+.tracks a:hover, .users a:hover { color: #555; }
+.tracks a:active, .users a:active { color: #333; }
 .users .track-count { color: #555; }
 
 .tracks {

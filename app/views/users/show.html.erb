@@ -2,20 +2,25 @@
   <%= render @user.tracks %>
 
   <audio controls="controls" id="audio" class="hidden"></audio>
-</section>
 
-<% if current_user == @user %>
-  <% if @user.tracks.empty? %>
-    <div class="blank slate">
-      Copy a URL from a track hosted on Official.fm, then click on the plus button below to paste it !
-    </div>
+  <% if current_user == @user %>
+    <% if @user.tracks.empty? %>
+      <div class="blank slate">
+        Copy a URL from a track hosted on Official.fm, then click on the plus button below to paste it !
+      </div>
+    <% end %>
+
+    <form id="create_player" action="<%= tracks_path %>" method="POST">
+      <input type="hidden" value="" name="player[url]" />
+    </form>
   <% end %>
 
-  <form id="create_player" action="<%= tracks_path %>" method="POST">
-    <input type="hidden" value="" name="player[url]" />
-  </form>
-<% end %>
-
-<% if @user.tracks.empty? %>
-  <h2>Too bad, that user hasn't any favorite track yet :-(</h2>
-<% end %>
+  <% if @user.tracks.empty? %>
+    <h2>Too bad, that user hasn't any favorite track yet :-(</h2>
+    <% if request.referer %>
+      <%= link_to 'Back to previous page', request.referer %>
+    <% else %>
+      <%= link_to 'Back to people', users_path %>
+    <% end %>
+  <% end %>
+</section>
