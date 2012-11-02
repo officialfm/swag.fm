@@ -22,13 +22,12 @@ class Track < ActiveRecord::Base
   ######################
 
   def fetch_metadata
-    require 'swag_fm'
-    if track = SwagFm.official.track(resource_id, fields: 'cover,streaming')
-      self.cover_url = track.cover.urls.medium
-      self.stream_url = track.streaming.http
-      self.duration = track.duration
-      self.artist = track.artist
-      self.title = track.title
+    if resolver = SwagFm::Resolver.new_from_url(url)
+      self.cover_url = resolver.cover_url
+      self.stream_url = resolver.stream_url
+      self.duration = resolver.duration
+      self.artist = resolver.artist
+      self.title = resolver.title
     end
   end
 

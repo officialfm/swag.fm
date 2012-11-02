@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'officialfm'
+gem 'soundcloud'
 
 # Gem used for user authentication in browser extension
 gem "oauth-plugin", "~> 0.4.0"

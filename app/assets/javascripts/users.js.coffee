@@ -12,7 +12,7 @@ class PlayerCreator
       alert "This is not an official.fm url!"
 
   match: (url) ->
-    return url.match /official\.fm/
+    return url.match(/official\.fm/) || url.match(/soundcloud\.com/)
 
   save: (url) ->
     $.ajax('/tracks', type: 'POST', success: @onSuccess.bind(this), error: @onError.bind(this),
