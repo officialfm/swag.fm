@@ -15,8 +15,9 @@ module SwagFm
     end
 
     class OfficialFm < Resolver
+
       def track
-        @track ||= SwagFm.official.track(url.split('/').last, fields: 'cover,streaming')
+        @track ||= OfficialFM::Client.new.track(url.split('/').last, fields: 'cover,streaming')
       end
 
       def cover_url
@@ -41,6 +42,7 @@ module SwagFm
     end
 
     class SoundCloud < Resolver
+
       def track
         @track ||= ::Soundcloud.new(client_id: '880faec8a616cb8ddc4fc35fe410b644').get('/resolve', url: url)
       end
