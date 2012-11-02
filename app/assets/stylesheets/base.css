@@ -5,6 +5,11 @@ body {
   margin: 0;
 }
 
+.users a { color: #888; }
+.users a:hover { color: #555; }
+.users a:active { color: #333; }
+.users .track-count { color: #555; }
+
 .tracks {
   width: 100%;
   position: absolute;

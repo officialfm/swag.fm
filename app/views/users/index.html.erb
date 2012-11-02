@@ -1,5 +1,7 @@
 <h1>Discover music listened by other swag users !</h1>
 
-<% for user in @users %>
-  <%= link_to user.name, user %> (<%= user.tracks.count %> tracks)<br/>
-<% end %>
+<section class="users">
+  <% for user in @users %>
+    <%= link_to user.name, user %> <span class="track-count">(<%= user.tracks.count %> tracks)</span><br/>
+  <% end %>
+</section>
