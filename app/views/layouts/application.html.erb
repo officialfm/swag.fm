@@ -16,10 +16,15 @@
       <% if current_user %>
         <span class="iconic plus" id="add-button" title="Add a track"></span>
       <% end %>
+      <%= yield :page_title %>
     </section>
     <section class="settings">
-      <%= link_to 'People', users_path %>
-      <%= link_to 'Latest tracks', tracks_path %>
+      <% if request.fullpath != users_path %>
+        <%= link_to 'People', users_path %>
+      <% end %>
+      <% if request.fullpath != tracks_path %>
+        <%= link_to 'Latest tracks', tracks_path %>
+      <% end %>
       <% if current_user %>
         <% if current_user != @user %>
           <%= link_to 'Your favorite tracks', current_user %>
