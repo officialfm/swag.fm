@@ -48,7 +48,7 @@ module SwagFm
       end
 
       def cover_url
-        track.artwork_url
+        track.artwork_url.sub('-large.', '-t200x200.')
       end
 
       def stream_url
