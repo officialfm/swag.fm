@@ -100,6 +100,9 @@ footer {
   background-color: #111;
 }
 
+footer a {
+  text-decoration: none;
+}
 
 footer section.controls {
   float: left;
@@ -115,7 +118,6 @@ footer section.settings a.active:active {
 }
 
 footer section.settings a {
-  text-decoration: none;
   padding-right: 5px;
   color: #555;
 }

@@ -69,6 +69,7 @@ class Player
     $(@pausedTrack()).addClass('playing')
     $(@pausedTrack()).removeClass('paused')
     $('#current-track').text($(@playingTrack()).attr('title'))
+    $('#current-track')[0].href = '#' + track.id
 
   pause: () ->
     @audio().pause()
