@@ -111,29 +111,32 @@ footer section.controls {
   vertical-align: middle;
 }
 
-footer section.settings a.active,
-footer section.settings a.active:hover,
-footer section.settings a.active:active {
+footer a {
+  color: #555;
+}
+
+footer a.active,
+footer a.active:hover,
+footer a.active:active {
   color: #888;
 }
 
 footer section.settings a {
   padding-right: 5px;
-  color: #555;
 }
 
 footer section.controls .iconic {
   margin: 5px;
 }
 
-footer section.settings a:hover,
-footer section.controls .iconic:hover {
+footer a:hover,
+footer .iconic:hover {
   cursor: pointer;
   color: #333;
 }
 
-footer section.settings a:active,
-footer section.controls .iconic:active {
+footer a:active,
+footer .iconic:active {
   color: #222;
 }
 
