@@ -13,6 +13,12 @@ class Player
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
 
+    @autoPlay()
+
+  autoPlay: () ->
+    if window.location.hash && $(window.location.hash)[0]
+      @play($(window.location.hash)[0])
+
   dragTrack: (event) ->
     event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('data-target'))
 
