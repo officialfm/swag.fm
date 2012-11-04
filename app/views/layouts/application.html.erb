@@ -28,7 +28,8 @@
         <%= link_to 'Your favorites', current_user, class: request.fullpath == user_path(current_user) ? 'active' : '' %>
         <%= link_to 'Logout', session_path, method: 'DELETE' %>
       <% else %>
-        <%= link_to 'Login', session_path %> or <%= link_to 'signup', new_user_path %>.
+        <%= link_to 'Login', session_path %>
+        <%= link_to 'signup', new_user_path %>
       <% end %>
     </section>
   </footer>

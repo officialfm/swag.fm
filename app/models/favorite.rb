@@ -1,5 +1,7 @@
 class Favorite < ActiveRecord::Base
 
+  attr_accessible :track, :user, :position
+
   #################
   ### Relations ###
   #################
@@ -14,7 +16,9 @@ class Favorite < ActiveRecord::Base
 
   validates :user, :track, :position, presence: true
 
-  attr_accessible :track, :user, :position
+  #####################
+  ### Class methods ###
+  #####################
 
   def self.new_from_url(url)
     new(track: Track.find_by_url(url) || Track.from_url(url))
@@ -39,7 +43,4 @@ class Favorite < ActiveRecord::Base
     end
   end
 
-  def clone_to(user)
-    user.add_favorite(Favorite.new(track: track, user: user, cloned_from_user: self))
-  end
 end

@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+
   def create
     @user = current_user
     @favorite = Favorite.new_from_url(params[:url])
@@ -17,7 +18,9 @@ class FavoritesController < ApplicationController
     render(text: 'OK')
   end
 
-  def clone
-    render(json: Favorite.find(params[:id]).clone_to(current_user))
+  def destroy
+    current_user.favorites.find(params[:id]).destroy
+    head(:no_content)
   end
+
 end

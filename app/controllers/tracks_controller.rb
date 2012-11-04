@@ -2,9 +2,6 @@
 
 class TracksController < ApplicationController
 
-  #before_filter :login_or_oauth_required
-  before_filter :find_track, only: %[destroy]
-
   def create
     @user = current_user
     @track = Track.from_url(params[:url])
@@ -22,28 +19,12 @@ class TracksController < ApplicationController
     end
   end
 
-  def update
-    current_user.tracks.find(params[:id]).reorder(params[:position].to_i)
-    render(text: 'OK')
-  end
-
   def index
     @tracks = Track.limit(100).order('created_at DESC')
     respond_to do |format|
       format.html { render }
       format.json { render json: @tracks = Track.where(url: params[:url]) }
     end
-  end
-
-  def destroy
-    @track.destroy
-    render json: {}
-  end
-
-  private
-
-  def find_track
-    @track = Track.find(params[:id])
   end
 
 end
