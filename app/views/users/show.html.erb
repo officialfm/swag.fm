@@ -4,7 +4,7 @@
   <audio controls="controls" id="audio" class="hidden"></audio>
 
   <% if current_user == @user %>
-    <% if @user.tracks.empty? %>
+    <% if @user.favorites.empty? %>
       <div class="blank slate">
         Copy a URL from a track hosted on Official.fm or Soundcloud.com, then click on the plus button below to paste it !
       </div>
@@ -15,7 +15,7 @@
     </form>
   <% end %>
 
-  <% if @user.tracks.empty? %>
+  <% if @user.favorites.empty? %>
     <h2>Too bad ... that user doesn't have any favorites yet :-(</h2>
     <% if request.referer %>
       <%= link_to 'Back to previous page', request.referer %>
