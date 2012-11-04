@@ -26,6 +26,7 @@ class Track < ActiveRecord::Base
       self.cover_url = resolver.cover_url
       self.stream_url = resolver.stream_url
       self.duration = resolver.duration
+      self.url = resolver.origin_url
       self.artist = resolver.artist
       self.title = resolver.title
     end

@@ -39,6 +39,10 @@ module SwagFm
       def title
         track.title
       end
+
+      def origin_url
+        track.page
+      end
     end
 
     class SoundCloud < Resolver
@@ -65,6 +69,10 @@ module SwagFm
 
       def title
         track.title
+      end
+
+      def origin_url
+        track.permalink_url
       end
     end
   end
