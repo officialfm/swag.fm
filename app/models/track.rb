@@ -1,7 +1,13 @@
 class Track < ActiveRecord::Base
+
   attr_accessible :url
 
+  #################
+  ### Relations ###
+  #################
+
   belongs_to :user
+  has_many :favorites
 
   ###################
   ### Validations ###
