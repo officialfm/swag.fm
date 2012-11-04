@@ -2,6 +2,6 @@
 
 <section class="users">
   <% for user in @users %>
-    <%= link_to user.name, user %> <span class="track-count">(<%= user.tracks.count %> tracks)</span><br/>
+    <%= link_to user.name, user %> <span class="track-count">(<%= user.favorites.count %> favorites)</span><br/>
   <% end %>
 </section>

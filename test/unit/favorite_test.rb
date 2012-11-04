@@ -6,7 +6,7 @@ class FavoriteTest < ActiveSupport::TestCase
   end
 
   def test_new_from_url_when_track_does_not_exist
-    Track.expects(from_url: track = Track.new)
+    Track.expects(new_from_url: track = Track.new)
     assert_equal(track, Favorite.new_from_url('http://official.fm/tracks/dB3C').track)
   end
 

@@ -19,7 +19,7 @@ class Track < ActiveRecord::Base
   ### Class methods ###
   #####################
 
-  def self.from_url(url)
+  def self.new_from_url(url)
     track = new(url: url) and track.fetch_metadata and track
   end
 

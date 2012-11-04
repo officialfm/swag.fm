@@ -21,7 +21,7 @@ class Favorite < ActiveRecord::Base
   #####################
 
   def self.new_from_url(url)
-    new(track: Track.find_by_url(url) || Track.from_url(url))
+    new(track: Track.find_by_url(url) || Track.new_from_url(url))
   end
 
   def self.between(from, to)
