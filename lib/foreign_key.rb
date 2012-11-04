@@ -44,6 +44,6 @@ module ForeignKey
   end
 
   def fk_name(foreign_table_name, foreign_column_names, primary_table_name, primary_column_names)
-    "fk_#{foreign_table_name.to_s}_on_#{primary_table_name.to_s}"
+    "fk_#{foreign_table_name}_on_#{foreign_column_names}"
   end
 end

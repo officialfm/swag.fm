@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102162823) do
+ActiveRecord::Schema.define(:version => 20121104052929) do
 
   create_table "client_applications", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(:version => 20121102162823) do
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "track_id",   :null => false
+    t.integer  "position",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "favorites", ["created_at"], :name => "index_favorites_on_created_at"
+  add_index "favorites", ["user_id", "position"], :name => "index_favorites_on_user_id_and_position"
 
   create_table "oauth_nonces", :force => true do |t|
     t.string   "nonce"

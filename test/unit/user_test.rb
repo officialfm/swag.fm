@@ -1,13 +1,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  def test_add_track
+  def test_add_favorite
     alice = users(:alice)
-    previous_first_track = alice.tracks.first
-    track = Track.new(url: 'http://api.official.fm/tracks/2d8q/stream')
-    track.stream_url = 'http://api.official.fm/tracks/2d8q/stream'
-    track.cover_url = 'http://cdn.official.fm/medias/pictures/vn/vnlN_medium.jpg'
-    assert_difference('alice.tracks.count') { alice.add_track(track) }
-    assert_equal(2, previous_first_track.reload.position)
+    old_favorites = alice.favorites.to_a
+    favorite = Favorite.new(track: tracks(:slaugther_house))
+    assert_difference('alice.favorites.count') { assert(alice.add_favorite(favorite)) }
+    assert_equal([favorite] + old_favorites, alice.favorites.reload)
   end
 end

@@ -11,6 +11,7 @@ SwagFm::Application.routes.draw do
   resource :session, controller: 'session'
   resources :users
   resources :tracks, only: %w[index create update destroy]
+  resources :favorites, only: %w[index create update destroy]
 
   resources :extensions, only: [] do
     get :chrome, on: :collection

@@ -4,6 +4,7 @@
   data-url="<%= track_url(track) %>"
   data-position="<%= track.position %>"
   data-stream-url="<%= track.stream_url %>"
+  data-origin-url="<%= track.url %>"
   style="background-image: url('<%= track.cover_url %>')"
   title="<%= track_tooltip(track) %>">
   <div class="primary controls">
@@ -16,7 +17,7 @@
       <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true" title="Move"></span>
     <% end %>
     <% if current_user && current_user != @user %>
-      <span class="iconic plus" data-action="import" data-url="<%= track.url %>" title="Import to your playlist"></span>
+      <span class="iconic plus" data-action="import" data-target="track_<%= track.id %>" title="Import to your playlist"></span>
     <% end %>
     <a href="<%= track.url %>" class="iconic link" target="_blank" title="Official page"></a>
   </div>

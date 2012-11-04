@@ -15,7 +15,7 @@ class PlayerCreator
     return url.match(/official\.fm/) || url.match(/soundcloud\.com/)
 
   save: (url) ->
-    $.ajax('/tracks', type: 'POST', success: @onSuccess.bind(this), error: @onError.bind(this),
+    $.ajax('/favorites', type: 'POST', success: @onSuccess.bind(this), error: @onError.bind(this),
     data: {url: url})
 
   onSuccess: (response) ->

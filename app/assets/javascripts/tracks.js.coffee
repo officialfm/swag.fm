@@ -28,9 +28,8 @@ class Player
       target.parentNode.insertBefore(draggedTrack, target.nextSibling)
     else
       target.parentNode.insertBefore(draggedTrack, target)
-    @tracks().each (index, track) ->
-      $(track).attr('data-position', index + 1)
-      $.ajax($(track).attr('data-url'), type: 'PUT', data: {position: $(track).attr('data-position')})
+    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
+    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
   keyPressed: (event) ->
     if (event.which == 32) # 32 is space key code.
@@ -52,7 +51,8 @@ class Player
     $.ajax(track.attr('data-url'), type: 'DELETE', success: => track.remove())
 
   clickOnImport: (event) ->
-    $.ajax('/tracks', type: 'POST', data: {url: $(event.target).attr('data-url')}, success: -> alert('Track added.'))
+    target = $('#' + $(event.target).attr('data-target'))
+    $.ajax('/favorites', type: 'POST', data: {url: target.attr('data-origin-url')}, success: -> alert('Track added.'))
 
   tracks: () ->
     $('.track')
