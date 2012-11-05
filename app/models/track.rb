@@ -6,14 +6,13 @@ class Track < ActiveRecord::Base
   ### Relations ###
   #################
 
-  belongs_to :user
   has_many :favorites
 
   ###################
   ### Validations ###
   ###################
 
-  validate :user, presence: true
+  validate :title, :artist, :duration, :url, :stream_url, :cover_url, presence: true
 
   #####################
   ### Class methods ###
