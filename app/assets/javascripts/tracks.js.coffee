@@ -1,12 +1,11 @@
 class Player
   constructor: () ->
     $(@audio()).on('ended', @playNextTrack.bind(this))
+    $("html").keydown(@keyPressed.bind(this))
     @initializeEvents()
     @autoPlay()
 
   initializeEvents: () ->
-    $("html").keydown(@keyPressed.bind(this))
-
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
@@ -15,6 +14,7 @@ class Player
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
+    $('#add-button').on('click', @clickOnAddButton.bind(this))
 
   autoPlay: () ->
     if window.location.hash && $(window.location.hash)[0]
@@ -142,6 +142,19 @@ class Player
 
   clickOnPreviousButton: () ->
     @playPreviousTrack()
+
+  clickOnAddButton: ->
+    url = prompt("Copy a track URL from official.fm or soundcloud.com.")
+    if url.match(/official\.fm/) || url.match(/soundcloud\.com/)
+      @addTrack(url)
+    else
+      alert("This is neither a URL from official.fm not soundcloud.com.")
+
+  addTrack: (url) ->
+    $.ajax('/favorites', type: 'POST', data: {url: url}, success: (response) =>
+      $('.tracks')[0].insertBefore($(response)[0], @tracks()[0])
+      $('.blank.slate').remove()
+    )
 
   pageChanged: () ->
     @initializeEvents()
