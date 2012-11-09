@@ -39,9 +39,15 @@ class Player
     $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
   keyPressed: (event) ->
-    if (event.which == 32) # 32 is space key code.
+    if (event.which == 32) # Space
       event.preventDefault()
       @togglePlayback()
+    else if (event.which == 37) # Left
+      event.preventDefault()
+      @playPreviousTrack()
+    else if (event.which == 39) # Right
+      event.preventDefault()
+      @playNextTrack()
 
   clickOnPlay: (event) ->
     clickedTrack = $('#' + $(event.target).attr('data-target'))[0]
