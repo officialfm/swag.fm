@@ -106,9 +106,12 @@ footer a {
 
 footer section.controls {
   float: left;
-  font-size: 2em;
   color: #555;
   vertical-align: middle;
+}
+
+footer section.controls .iconic {
+  font-size: 2em;
 }
 
 footer a {
@@ -121,12 +124,17 @@ footer a.active:active {
   color: #888;
 }
 
+footer section.info {
+  margin-left: 10px;
+  float: left;
+}
+
 footer section.settings a {
   padding-right: 5px;
 }
 
 footer section.controls .iconic {
-  margin: 5px;
+  margin: 0 5px;
 }
 
 footer a:hover,
