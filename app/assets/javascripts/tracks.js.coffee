@@ -75,8 +75,9 @@ class Player
     @playButton().removeClass('play')
     $(@pausedTrack()).addClass('playing')
     $(@pausedTrack()).removeClass('paused')
-    $('#current-track').text($(@playingTrack()).attr('title'))
-    $('#current-track')[0].href = '#' + track.id
+    if track
+      $('#current-track').text($(@playingTrack()).attr('title'))
+      $('#current-track')[0].href = '#' + track.id
 
   pause: () ->
     @audio().pause()
@@ -98,7 +99,7 @@ class Player
     $('.track.paused')[0]
 
   playNextTrack: () ->
-    @play(@nextTrack()) if @nextTrack()
+    @play(@nextTrack() || $('.track')[0])
 
   playPreviousTrack: () ->
     @play(@previousTrack()) if @previousTrack()
@@ -144,4 +145,5 @@ class Player
 
 $(document).ready ->
   player = new Player
+  $(window).bind('page:change', -> window.audio.play())
   $(window).bind('page:change', player.initializeEvents.bind(player))
