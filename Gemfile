@@ -6,6 +6,7 @@ gem 'rails', '3.2.8'
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'pg'
+gem 'turbolinks'
 
 # APIs
 gem 'officialfm'

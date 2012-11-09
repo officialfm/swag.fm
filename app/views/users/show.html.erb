@@ -1,8 +1,6 @@
 <section class="tracks">
   <%= render @user.favorites %>
 
-  <audio controls="controls" id="audio" class="hidden"></audio>
-
   <% if current_user == @user %>
     <% if @user.favorites.empty? %>
       <div class="blank slate">

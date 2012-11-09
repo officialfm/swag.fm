@@ -1,8 +1,11 @@
 class Player
   constructor: () ->
-    $("html").keydown(@keyPressed.bind(this))
-
     $(@audio()).on('ended', @playNextTrack.bind(this))
+    @initializeEvents()
+    @autoPlay()
+
+  initializeEvents: () ->
+    $("html").keydown(@keyPressed.bind(this))
 
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
@@ -12,8 +15,6 @@ class Player
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
-
-    @autoPlay()
 
   autoPlay: () ->
     if window.location.hash && $(window.location.hash)[0]
@@ -103,7 +104,7 @@ class Player
     @play(@previousTrack()) if @previousTrack()
 
   audio: () ->
-    $('#audio')[0]
+    window.audio || (window.audio = $('audio')[0])
 
   trackAdded: (event) ->
     @listenTrackEvents($(event.target))
@@ -141,4 +142,6 @@ class Player
   clickOnPreviousButton: () ->
     @playPreviousTrack()
 
-$(document).ready -> new Player
+$(document).ready ->
+  player = new Player
+  $(window).bind('page:change', player.initializeEvents.bind(player))
