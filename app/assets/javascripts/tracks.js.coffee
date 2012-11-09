@@ -105,7 +105,7 @@ class Player
     @play(@previousTrack()) if @previousTrack()
 
   audio: () ->
-    window.audio || (window.audio = $('audio')[0])
+    @audioElement || (@audioElement = $('audio')[0])
 
   trackAdded: (event) ->
     @listenTrackEvents($(event.target))
@@ -145,5 +145,5 @@ class Player
 
 $(document).ready ->
   player = new Player
-  $(window).bind('page:change', -> window.audio.play())
+  $(window).bind('page:change', -> player.audio().play())
   $(window).bind('page:change', player.initializeEvents.bind(player))
