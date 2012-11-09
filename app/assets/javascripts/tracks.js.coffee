@@ -143,7 +143,10 @@ class Player
   clickOnPreviousButton: () ->
     @playPreviousTrack()
 
+  pageChanged: () ->
+    @audio().play()
+    @initializeEvents()
+
 $(document).ready ->
   player = new Player
-  $(window).bind('page:change', -> player.audio().play())
-  $(window).bind('page:change', player.initializeEvents.bind(player))
+  $(window).bind('page:change', player.pageChanged.bind(player))
