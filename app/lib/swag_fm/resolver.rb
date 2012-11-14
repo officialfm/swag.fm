@@ -17,7 +17,7 @@ module SwagFm
     class OfficialFm < Resolver
 
       def track
-        @track ||= OfficialFM::Client.new.track(url.split('/').last, fields: 'cover,streaming')
+        @track ||= OfficialFM::Client.new(api_key: '4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz').track(url.split('/').last, fields: 'cover,streaming')
       end
 
       def cover_url
