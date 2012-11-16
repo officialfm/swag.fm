@@ -29,10 +29,26 @@ a:active { color: #666; }
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
+  opacity: 0.8;
 }
 
-.track { opacity: 0.8; }
-.track:hover, .track.paused, .track.playing {
+.track.paused, .track.playing {
+  -moz-box-shadow: 0px 0px 40px 10px #000000;
+  -webkit-box-shadow: 0px 0px 40px 10px #000000;
+  -o-box-shadow: 0px 0px 40px 10px #000000;
+  box-shadow: 0px 0px 40px 10px #000000;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=40);
+  opacity: 1;
+  z-index: 50;
+}
+
+.track:hover {
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',M11=1.05, M12=-0, M21=0, M22=1.05);
   -moz-box-shadow: 0px 0px 40px 10px #000000;
   -webkit-box-shadow: 0px 0px 40px 10px #000000;
   -o-box-shadow: 0px 0px 40px 10px #000000;
