@@ -12,9 +12,6 @@ gem 'turbolinks'
 gem 'officialfm'
 gem 'soundcloud'
 
-# Gem used for user authentication in browser extension
-gem "oauth-plugin", "~> 0.4.0"
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
