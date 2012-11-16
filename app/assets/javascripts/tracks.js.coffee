@@ -2,6 +2,56 @@ class Gallery
   constructor: (@player) ->
     @player.observe('play', @play.bind(this))
     @player.observe('pause', @pause.bind(this))
+    @initializeEvents()
+
+  initializeEvents: () ->
+    $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
+    $('.tracks').on('dragover', @dragOverTrack.bind(this))
+    $('.tracks').on('drop', @dropTrack.bind(this))
+    @listenTrackEvents($('.tracks'))
+
+  listenTrackEvents: (collection) ->
+    collection.find('[data-action=play]').on('click', @clickOnPlay.bind(this))
+    collection.find('[data-action=pause]').on('click', @clickOnPause.bind(this))
+    collection.find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
+    collection.find('[data-action=import]').on('click', @clickOnImport.bind(this))
+    collection.find('[data-action=move]').on('dragstart', @dragTrack.bind(this))
+
+  trackAdded: (event) ->
+    @listenTrackEvents($(event.target))
+
+  dragTrack: (event) ->
+    event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('data-target'))
+
+  dragOverTrack: (event) ->
+    event.preventDefault()
+
+  dropTrack: (event) ->
+    event.preventDefault()
+    event = event.originalEvent
+    target = $(event.target).closest('[data-url]')[0]
+    draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
+    if (parseInt($(draggedTrack).attr('data-position')) < parseInt($(target).attr('data-position')))
+      target.parentNode.insertBefore(draggedTrack, target.nextSibling)
+    else
+      target.parentNode.insertBefore(draggedTrack, target)
+    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
+    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
+
+  clickOnPlay: (event) ->
+    trackId = parseInt(event.target.attributes.getNamedItem('data-target').value.replace('track_', ''))
+    @player.play(@player.findTrackById(trackId))
+
+  clickOnPause: (event) ->
+    @player.pause()
+
+  clickOnDelete: (event) ->
+    track = $(event.target).closest('[data-url]')
+    $.ajax(track.attr('data-url'), type: 'DELETE', success: => track.remove())
+
+  clickOnImport: (event) ->
+    target = $('#' + $(event.target).attr('data-target'))
+    $.ajax('/favorites', type: 'POST', data: {url: target.attr('data-origin-url')}, success: -> alert('Track added.'))
 
   play: (track) ->
     $('.track').removeClass('playing')
@@ -60,11 +110,6 @@ class Player
         callback.apply(undefined, Array.prototype.slice.call(arguments, 1))
 
   initializeEvents: () ->
-    $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
-    $('.tracks').on('dragover', @dragOverTrack.bind(this))
-    $('.tracks').on('drop', @dropTrack.bind(this))
-    @listenTrackEvents($('.tracks'))
-
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
@@ -73,24 +118,6 @@ class Player
   autoPlay: () ->
     if window.location.hash && $(window.location.hash)[0]
       @play($(window.location.hash)[0])
-
-  dragTrack: (event) ->
-    event.originalEvent.dataTransfer.setData("Text", $(event.target).attr('data-target'))
-
-  dragOverTrack: (event) ->
-    event.preventDefault()
-
-  dropTrack: (event) ->
-    event.preventDefault()
-    event = event.originalEvent
-    target = $(event.target).closest('[data-url]')[0]
-    draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
-    if (parseInt($(draggedTrack).attr('data-position')) < parseInt($(target).attr('data-position')))
-      target.parentNode.insertBefore(draggedTrack, target.nextSibling)
-    else
-      target.parentNode.insertBefore(draggedTrack, target)
-    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
-    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
   keyPressed: (event) ->
     if (event.which == 32) # Space
@@ -107,25 +134,6 @@ class Player
     for track in @tracks()
       if track.id == id
         return track
-
-  clickOnPlay: (event) ->
-    trackId = parseInt(event.target.attributes.getNamedItem('data-target').value.replace('track_', ''))
-    clickedTrack = @findTrackById(trackId)
-    if (clickedTrack == @pausedTrack())
-      @play()
-    else
-      @play(clickedTrack)
-
-  clickOnPause: (event) ->
-    @pause()
-
-  clickOnDelete: (event) ->
-    track = $(event.target).closest('[data-url]')
-    $.ajax(track.attr('data-url'), type: 'DELETE', success: => track.remove())
-
-  clickOnImport: (event) ->
-    target = $('#' + $(event.target).attr('data-target'))
-    $.ajax('/favorites', type: 'POST', data: {url: target.attr('data-origin-url')}, success: -> alert('Track added.'))
 
   tracks: () ->
     @_tracks || (@_tracks = @loadTracks())
@@ -145,7 +153,7 @@ class Player
     array
 
   play: (track) ->
-    if (track)
+    if (track != @playingTrack)
       $(@audio()).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
       @notify('play', @playingTrack = track)
     @audio().play()
@@ -181,16 +189,6 @@ class Player
   audio: () ->
     @audioElement || (@audioElement = document.createElement('audio'))
 
-  trackAdded: (event) ->
-    @listenTrackEvents($(event.target))
-
-  listenTrackEvents: (collection) ->
-    collection.find('[data-action=play]').on('click', @clickOnPlay.bind(this))
-    collection.find('[data-action=pause]').on('click', @clickOnPause.bind(this))
-    collection.find('[data-action=delete]').on('click', @clickOnDelete.bind(this))
-    collection.find('[data-action=import]').on('click', @clickOnImport.bind(this))
-    collection.find('[data-action=move]').on('dragstart', @dragTrack.bind(this))
-
   playButton: () ->
     $('#play-button')
 
@@ -210,25 +208,6 @@ class Player
       @play()
     else
       @play(@tracks()[0])
-
-  clickOnNextButton: () ->
-    @playNextTrack()
-
-  clickOnPreviousButton: () ->
-    @playPreviousTrack()
-
-  clickOnAddButton: ->
-    url = prompt("Copy a track URL from official.fm or soundcloud.com.")
-    if url.match(/official\.fm/) || url.match(/soundcloud\.com/)
-      @addTrack(url)
-    else
-      alert("This is neither a URL from official.fm not soundcloud.com.")
-
-  addTrack: (url) ->
-    $.ajax('/favorites', type: 'POST', data: {url: url}, success: (response) =>
-      $('.tracks')[0].insertBefore($(response)[0], @tracks()[0])
-      $('.blank.slate').remove()
-    )
 
 class SwagFm
   constructor: () ->
