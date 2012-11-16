@@ -1,9 +1,63 @@
+class Gallery
+  constructor: (@player) ->
+    @player.observe('play', @play.bind(this))
+    @player.observe('pause', @pause.bind(this))
+
+  play: (track) ->
+    $('.track').removeClass('playing')
+    $('.track').removeClass('paused')
+    $('#track_' + track.id).addClass('playing')
+
+  pause: (track) ->
+    $('#track_' + track.id).addClass('paused')
+    $('#track_' + track.id).removeClass('playing')
+
+
+class Controller
+  constructor: (@player) ->
+    @player.observe('play', @play.bind(this))
+
+  play: (track) ->
+    $('#current-track').text(track.title + ' - ' + track.title)
+    $('#current-track')[0].href = '#' + track.id
+
+class Track
+  constructor: (attributes) ->
+    @id = attributes['id']
+    @url = attributes['url']
+    @title = attributes['title']
+    @artist = attributes['artist']
+    @position= attributes['position']
+    @streamUrl = attributes['streamUrl']
+    @originUrl= attributes['originUrl']
+    @coverUrl = attributes['coverUrl']
+
+  observe: (name, callback) ->
+    @callbacks || (@callbacks = {})
+    @callbacks[name] || (@callbacks[name] = [])
+    this.callbacks[name].push(callback)
+
+  notify: (name) ->
+    if @callbacks && @callbacks[name]
+      for callback in @callbacks[name]
+        callback.apply(undefined, Array.prototype.slice.call(arguments, 1))
+
 class Player
   constructor: () ->
     $(@audio()).on('ended', @playNextTrack.bind(this))
     $("html").keydown(@keyPressed.bind(this))
     @initializeEvents()
     @autoPlay()
+
+  observe: (name, callback) ->
+    @callbacks || (@callbacks = {})
+    @callbacks[name] || (@callbacks[name] = [])
+    this.callbacks[name].push(callback)
+
+  notify: (name) ->
+    if @callbacks && @callbacks[name]
+      for callback in @callbacks[name]
+        callback.apply(undefined, Array.prototype.slice.call(arguments, 1))
 
   initializeEvents: () ->
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
@@ -49,8 +103,14 @@ class Player
       event.preventDefault()
       @playNextTrack()
 
+  findTrackById: (id) ->
+    for track in @tracks()
+      if track.id == id
+        return track
+
   clickOnPlay: (event) ->
-    clickedTrack = $('#' + $(event.target).attr('data-target'))[0]
+    trackId = parseInt(event.target.attributes.getNamedItem('data-target').value.replace('track_', ''))
+    clickedTrack = @findTrackById(trackId)
     if (clickedTrack == @pausedTrack())
       @play()
     else
@@ -68,29 +128,37 @@ class Player
     $.ajax('/favorites', type: 'POST', data: {url: target.attr('data-origin-url')}, success: -> alert('Track added.'))
 
   tracks: () ->
-    $('.track')
+    @_tracks || (@_tracks = @loadTracks())
+
+  loadTracks: () ->
+    array = []
+    for element in $('.track')
+      element = $(element)
+      array.push(new Track({
+        id: parseInt(element.attr('id').replace('track_', ''))
+        artist: element.attr('data-artist')
+        title: element.attr('data-title')
+        url: element.attr('data-url')
+        streamUrl: element.attr('data-stream-url')
+        originUrl: element.attr('data-origin-url')
+      }))
+    array
 
   play: (track) ->
     if (track)
-      $(@audio()).attr('src', $(track).attr('data-stream-url') + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
-      @tracks().removeClass('playing')
-      @tracks().removeClass('paused')
-      $(track).addClass('playing')
+      $(@audio()).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
+      @notify('play', @playingTrack = track)
     @audio().play()
     @playButton().addClass('pause')
     @playButton().removeClass('play')
     $(@pausedTrack()).addClass('playing')
     $(@pausedTrack()).removeClass('paused')
-    if track
-      $('#current-track').text($(@playingTrack()).attr('title'))
-      $('#current-track')[0].href = '#' + track.id
 
   pause: () ->
     @audio().pause()
     @playButton().addClass('play')
     @playButton().removeClass('pause')
-    $(@playingTrack()).addClass('paused')
-    $(@playingTrack()).removeClass('playing')
+    @notify('pause', @playingTrack)
 
   playingTrack: () ->
     $('.track.playing')[0]
@@ -136,7 +204,7 @@ class Player
     @togglePlayback()
 
   togglePlayback: () ->
-    if (@playingTrack())
+    if (@playingTrack)
       @pause()
     else if (@pausedTrack())
       @play()
@@ -162,9 +230,15 @@ class Player
       $('.blank.slate').remove()
     )
 
+class SwagFm
+  constructor: () ->
+    @player = new Player()
+    @gallery = new Gallery(@player)
+    @controller = new Controller(@player)
+
   pageChanged: () ->
-    @initializeEvents()
+    @player.initializeEvents()
 
 $(document).ready ->
-  player = new Player
-  $(window).bind('page:change', player.pageChanged.bind(player))
+  swagFm = new SwagFm
+  $(window).bind('page:change', swagFm.pageChanged.bind(swagFm))
