@@ -198,12 +198,11 @@ class Player
     array
 
   play: (track) ->
-    if (track != @playingTrack)
+    if (track != @playingTrack && track != @pausedTrack)
       $(@audio()).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
-      @notify('play', @playingTrack = track)
+    @notify('play', @playingTrack = track)
+    @pausedTrack = null
     @audio().play()
-    $(@pausedTrack()).addClass('playing')
-    $(@pausedTrack()).removeClass('paused')
 
   pause: () ->
     @pausedTrack = @playingTrack
@@ -248,7 +247,8 @@ class SwagFm
     @controller = new Controller(@player)
 
   pageChanged: () ->
-    @player.initializeEvents()
+    @gallery.initializeEvents()
+    @controller.initializeEvents()
 
 $(document).ready ->
   swagFm = new SwagFm
