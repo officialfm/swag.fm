@@ -72,7 +72,7 @@ class Player
 
   play: (track) ->
     if (track)
-      $(@audio()).attr('src', $(track).attr('data-stream-url') + '&api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
+      $(@audio()).attr('src', $(track).attr('data-stream-url') + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
       @tracks().removeClass('playing')
       @tracks().removeClass('paused')
       $(track).addClass('playing')
