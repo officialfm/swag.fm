@@ -72,6 +72,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    newrelic_rpm (3.5.0.1)
     officialfm (0.2.3)
       faraday (~> 0.8.1)
       faraday_middleware (~> 0.8.8)
@@ -141,6 +142,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   mocha
+  newrelic_rpm
   officialfm
   pg
   rails (= 3.2.8)
