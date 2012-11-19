@@ -24,6 +24,10 @@ group :assets do
   gem 'therubyracer'
 end
 
+group :development do
+  gem 'rack-mini-profiler'
+end
+
 group :test do
   gem 'mocha', require: false
 end
