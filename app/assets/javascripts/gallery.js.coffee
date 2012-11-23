@@ -14,7 +14,7 @@ class @Gallery
     @listenTrackEvents($('.tracks'))
 
   resizeTracksHeight: () ->
-    $('.track').height($('.track').width())
+    setTimeout( -> $('.track').height($('.track').width()) 1)
 
   listenTrackEvents: (collection) ->
     collection.find('[data-action=play]').on('click', @clickOnPlay.bind(this))
