@@ -1,12 +1,12 @@
 class @Controller
   constructor: (@player) ->
+    $(window).keydown(@keyPressed.bind(this))
     @player.observe('play', @play.bind(this))
     @player.observe('pause', @play.bind(this))
     @initializeEvents()
 
   initializeEvents: () ->
     @initializeCurrentTrack(@player.playingTrack) if @player.playingTrack
-    $("html").keydown(@keyPressed.bind(this))
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
