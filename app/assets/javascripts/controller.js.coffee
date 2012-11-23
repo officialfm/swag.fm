@@ -5,17 +5,21 @@ class @Controller
     @initializeEvents()
 
   initializeEvents: () ->
+    @initializeCurrentTrack(@player.playingTrack) if @player.playingTrack
     $("html").keydown(@keyPressed.bind(this))
     @playButton().on('click', @clickOnPlayButton.bind(this))
     @nextButton().on('click', @clickOnNextButton.bind(this))
     @previousButton().on('click', @clickOnPreviousButton.bind(this))
     $('#add-button').on('click', @clickOnAddButton.bind(this))
 
-  play: (track) ->
+  initializeCurrentTrack: (track) ->
     $('#current-track').text(track.title + ' - ' + track.title)
-    $('#current-track')[0].href = '#' + track.id
+    $('#current-track')[0].href = track.returnUrl + '#' + track.anchor
+
+  play: (track) ->
     @playButton().removeClass('play')
     @playButton().addClass('pause')
+    @initializeCurrentTrack(track)
 
   pause: (track) ->
     @playButton().addClass('play')

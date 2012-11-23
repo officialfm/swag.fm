@@ -5,6 +5,7 @@ class @Gallery
     @initializeEvents()
 
   initializeEvents: () ->
+    @play(@player.playingTrack) if @player.playingTrack
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
@@ -39,8 +40,11 @@ class @Gallery
     $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
 
   clickOnPlay: (event) ->
-    trackId = parseInt(event.target.attributes.getNamedItem('data-target').value.replace('track_', ''))
-    @player.play(@player.findTrackById(trackId))
+    anchor = event.target.attributes.getNamedItem('data-target').value
+    unless track = @player.findTrackByAnchor(anchor)
+      @player.reloadTracks()
+      track = @player.findTrackByAnchor(anchor)
+    @player.play(track)
 
   clickOnPause: (event) ->
     @player.pause()
@@ -56,7 +60,7 @@ class @Gallery
   play: (track) ->
     $('.track').removeClass('playing')
     $('.track').removeClass('paused')
-    $('#track_' + track.id).addClass('playing')
+    $('#' + track.anchor).addClass('playing')
 
   pause: (track) ->
     $('#track_' + track.id).addClass('paused')

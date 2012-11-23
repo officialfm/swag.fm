@@ -8,6 +8,8 @@ class @Track
     @streamUrl = attributes['streamUrl']
     @originUrl= attributes['originUrl']
     @coverUrl = attributes['coverUrl']
+    @anchor = attributes['anchor']
+    @returnUrl = attributes['returnUrl']
 
   observe: (name, callback) ->
     @callbacks || (@callbacks = {})

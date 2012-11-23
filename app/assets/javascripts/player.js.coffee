@@ -17,25 +17,35 @@ class @Player
     if window.location.hash && $(window.location.hash)[0]
       @play($(window.location.hash)[0])
 
+  findTrackByAnchor: (anchor) ->
+    for track in @tracks()
+      if track.anchor == anchor
+        return track
+
   findTrackById: (id) ->
     for track in @tracks()
       if track.id == id
         return track
 
   tracks: () ->
-    @_tracks || (@_tracks = @loadTracks())
+    @_tracks || @reloadTracks()
+
+  reloadTracks: () ->
+    @_tracks = @loadTracks()
 
   loadTracks: () ->
     array = []
     for element in $('.track')
       element = $(element)
       array.push(new Track({
-        id: parseInt(element.attr('id').replace('track_', ''))
+        anchor: element.attr('id')
+        id: parseInt(element.attr('data-track-id'))
         artist: element.attr('data-artist')
         title: element.attr('data-title')
         url: element.attr('data-url')
         streamUrl: element.attr('data-stream-url')
         originUrl: element.attr('data-origin-url')
+        returnUrl: window.location.pathname
       }))
     array
 
