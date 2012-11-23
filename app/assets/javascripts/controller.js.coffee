@@ -57,7 +57,7 @@ class @Controller
   clickOnAddButton: ->
     url = prompt("Copy a track URL from official.fm or soundcloud.com.")
     if url
-      if url.match(/official\.fm/) || url.match(/soundcloud\.com/)
+      if url.match(/official\.fm/) || url.match(/soundcloud\.com/) || url.match(/youtube\.com/)
         @addTrack(url)
       else
         alert("This is neither a URL from official.fm not soundcloud.com.")

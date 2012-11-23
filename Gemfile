@@ -11,6 +11,7 @@ gem 'turbolinks'
 # APIs
 gem 'officialfm'
 gem 'soundcloud'
+gem 'youtube_it'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
