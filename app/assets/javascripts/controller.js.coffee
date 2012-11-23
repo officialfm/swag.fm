@@ -56,14 +56,15 @@ class @Controller
 
   clickOnAddButton: ->
     url = prompt("Copy a track URL from official.fm or soundcloud.com.")
-    if url.match(/official\.fm/) || url.match(/soundcloud\.com/)
-      @addTrack(url)
-    else
-      alert("This is neither a URL from official.fm not soundcloud.com.")
+    if url
+      if url.match(/official\.fm/) || url.match(/soundcloud\.com/)
+        @addTrack(url)
+      else
+        alert("This is neither a URL from official.fm not soundcloud.com.")
 
   addTrack: (url) ->
     $.ajax('/favorites', type: 'POST', data: {url: url}, success: (response) =>
-      $('.tracks')[0].insertBefore($(response)[0], @tracks()[0])
+      $('.tracks')[0].insertBefore($(response)[0], $('.track')[0])
       $('.blank.slate').remove()
     )
 
