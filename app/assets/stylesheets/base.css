@@ -23,9 +23,8 @@ a:active { color: #666; }
   position: relative;
   margin: 0;
   float: left;
-  width: 200px;
-  height: 200px;
-  background-size: 200px 200px;
+  -webkit-background-size: cover;
+  background-size: cover;
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
@@ -215,4 +214,263 @@ footer section.settings {
   text-align: center;
   font-size: 36pt;
   font-weight: bold;
+}
+
+.track {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@media (min-width: 200px) {
+  .track {
+    width: 50%;
+  }
+}
+@media (min-width: 400px) {
+  .track {
+    width: 33.33333%;
+  }
+}
+@media (min-width: 600px) {
+  .track {
+    width: 25%;
+  }
+}
+@media (min-width: 800px) {
+  .track {
+    width: 20%;
+  }
+}
+@media (min-width: 1000px) {
+  .track {
+    width: 16.66667%;
+  }
+}
+@media (min-width: 1200px) {
+  .track {
+    width: 14.28571%;
+  }
+}
+@media (min-width: 1400px) {
+  .track {
+    width: 12.5%;
+  }
+}
+@media (min-width: 1600px) {
+  .track {
+    width: 11.11111%;
+  }
+}
+@media (min-width: 1800px) {
+  .track {
+    width: 10%;
+  }
+}
+@media (min-width: 2000px) {
+  .track {
+    width: 9.09091%;
+  }
+}
+@media (min-width: 2200px) {
+  .track {
+    width: 8.33333%;
+  }
+}
+@media (min-width: 2400px) {
+  .track {
+    width: 7.69231%;
+  }
+}
+@media (min-width: 2600px) {
+  .track {
+    width: 7.14286%;
+  }
+}
+@media (min-width: 2800px) {
+  .track {
+    width: 6.66667%;
+  }
+}
+@media (min-width: 3000px) {
+  .track {
+    width: 6.25%;
+  }
+}
+@media (min-width: 3200px) {
+  .track {
+    width: 5.88235%;
+  }
+}
+@media (min-width: 3400px) {
+  .track {
+    width: 5.55556%;
+  }
+}
+@media (min-width: 3600px) {
+  .track {
+    width: 5.26316%;
+  }
+}
+@media (min-width: 3800px) {
+  .track {
+    width: 5%;
+  }
+}
+@media (min-width: 4000px) {
+  .track {
+    width: 4.7619%;
+  }
+}
+@media (min-width: 4200px) {
+  .track {
+    width: 4.54545%;
+  }
+}
+@media (min-width: 4400px) {
+  .track {
+    width: 4.34783%;
+  }
+}
+@media (min-width: 4600px) {
+  .track {
+    width: 4.16667%;
+  }
+}
+@media (min-width: 4800px) {
+  .track {
+    width: 4%;
+  }
+}
+@media (min-width: 5000px) {
+  .track {
+    width: 3.84615%;
+  }
+}
+@media (min-width: 5200px) {
+  .track {
+    width: 3.7037%;
+  }
+}
+@media (min-width: 5400px) {
+  .track {
+    width: 3.57143%;
+  }
+}
+@media (min-width: 5600px) {
+  .track {
+    width: 3.44828%;
+  }
+}
+@media (min-width: 5800px) {
+  .track {
+    width: 3.33333%;
+  }
+}
+@media (min-width: 6000px) {
+  .track {
+    width: 3.22581%;
+  }
+}
+@media (min-width: 6200px) {
+  .track {
+    width: 3.125%;
+  }
+}
+@media (min-width: 6400px) {
+  .track {
+    width: 3.0303%;
+  }
+}
+@media (min-width: 6600px) {
+  .track {
+    width: 2.94118%;
+  }
+}
+@media (min-width: 6800px) {
+  .track {
+    width: 2.85714%;
+  }
+}
+@media (min-width: 7000px) {
+  .track {
+    width: 2.77778%;
+  }
+}
+@media (min-width: 7200px) {
+  .track {
+    width: 2.7027%;
+  }
+}
+@media (min-width: 7400px) {
+  .track {
+    width: 2.63158%;
+  }
+}
+@media (min-width: 7600px) {
+  .track {
+    width: 2.5641%;
+  }
+}
+@media (min-width: 7800px) {
+  .track {
+    width: 2.5%;
+  }
+}
+@media (min-width: 8000px) {
+  .track {
+    width: 2.43902%;
+  }
+}
+@media (min-width: 8200px) {
+  .track {
+    width: 2.38095%;
+  }
+}
+@media (min-width: 8400px) {
+  .track {
+    width: 2.32558%;
+  }
+}
+@media (min-width: 8600px) {
+  .track {
+    width: 2.27273%;
+  }
+}
+@media (min-width: 8800px) {
+  .track {
+    width: 2.22222%;
+  }
+}
+@media (min-width: 9000px) {
+  .track {
+    width: 2.17391%;
+  }
+}
+@media (min-width: 9200px) {
+  .track {
+    width: 2.12766%;
+  }
+}
+@media (min-width: 9400px) {
+  .track {
+    width: 2.08333%;
+  }
+}
+@media (min-width: 9600px) {
+  .track {
+    width: 2.04082%;
+  }
+}
+@media (min-width: 9800px) {
+  .track {
+    width: 2%;
+  }
+}
+@media (min-width: 10000px) {
+  .track {
+    width: 1.96078%;
+  }
 }

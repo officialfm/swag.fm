@@ -1,5 +1,6 @@
 class @Gallery
   constructor: (@player) ->
+    @resizeTracksHeight()
     @player.observe('play', @play.bind(this))
     @player.observe('pause', @pause.bind(this))
     @initializeEvents()
@@ -9,7 +10,11 @@ class @Gallery
     $('.tracks').on('DOMNodeInserted', @trackAdded.bind(this))
     $('.tracks').on('dragover', @dragOverTrack.bind(this))
     $('.tracks').on('drop', @dropTrack.bind(this))
+    $(window).resize(@resizeTracksHeight.bind(this))
     @listenTrackEvents($('.tracks'))
+
+  resizeTracksHeight: () ->
+    $('.track').height($('.track').width())
 
   listenTrackEvents: (collection) ->
     collection.find('[data-action=play]').on('click', @clickOnPlay.bind(this))
