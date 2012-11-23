@@ -29,7 +29,6 @@ a:active { color: #666; }
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
-  opacity: 0.8;
 }
 
 .track.paused, .track.playing {
@@ -38,7 +37,6 @@ a:active { color: #666; }
   -o-box-shadow: 0px 0px 40px 10px #000000;
   box-shadow: 0px 0px 40px 10px #000000;
   filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=40);
-  opacity: 1;
   z-index: 50;
 }
 
@@ -54,7 +52,6 @@ a:active { color: #666; }
   -o-box-shadow: 0px 0px 40px 10px #000000;
   box-shadow: 0px 0px 40px 10px #000000;
   filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=40);
-  opacity: 1;
   z-index: 100;
 }
 
