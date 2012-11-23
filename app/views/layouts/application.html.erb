@@ -13,7 +13,7 @@
       <span class="iconic first" id="previous-button" title="Previous track (use left arrow as a shortcut)"></span>
       <span class="iconic play" id="play-button" title="Play/pause (use space key as a shortcut)"></span>
       <span class="iconic last" id="next-button" title="Next track (use right arrow as a shortcut)"></span>
-      <% if current_user %>
+      <% if current_user && current_user == @user %>
         <span class="iconic plus" id="add-button" title="Add a track"></span>
       <% end %>
     </section>
