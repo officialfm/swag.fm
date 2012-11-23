@@ -12,6 +12,7 @@ class @Gallery
     $('.tracks').on('drop', @dropTrack.bind(this))
     $(window).resize(@resizeTracksHeight.bind(this))
     @listenTrackEvents($('.tracks'))
+    @resizeTracksHeight()
 
   resizeTracksHeight: () ->
     setTimeout( -> $('.track').height($('.track').width()) 1)
