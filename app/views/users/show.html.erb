@@ -13,12 +13,7 @@
     </form>
   <% end %>
 
-  <% if @user.favorites.empty? %>
+  <% if @user.favorites.empty? && @user != current_user %>
     <h2>Too bad ... that user doesn't have any favorites yet :-(</h2>
-    <% if request.referer %>
-      <%= link_to 'Back to previous page', request.referer %>
-    <% else %>
-      <%= link_to 'Back to people', users_path %>
-    <% end %>
   <% end %>
 </section>
