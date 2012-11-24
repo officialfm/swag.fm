@@ -6,6 +6,7 @@ class @Player
     $(@soundcloud).on('ended', @playNextTrack.bind(this))
 
     window.onYouTubePlayerReady = @onYouTubePlayerReady.bind(this)
+    window.onYouTubeStateChanged = @onYouTubeStateChanged.bind(this)
     @youtube = document.createElement('object')
     @youtube.setAttribute('type', "application/x-shockwave-flash")
     @youtube.setAttribute('id', "youtube-player")
@@ -101,6 +102,11 @@ class @Player
     # Create aliases for providing the same interface as audio HTML5 element.
     @youtube.play = @youtube.playVideo.bind(@youtube)
     @youtube.pause = @youtube.pauseVideo.bind(@youtube)
+    @youtube.addEventListener("onStateChange", "onYouTubeStateChanged")
+
+  onYouTubeStateChanged: (state, foo, bar) ->
+    if (state == 0)
+      @playNextTrack()
 
   pause: () ->
     @pausedTrack = @playingTrack
