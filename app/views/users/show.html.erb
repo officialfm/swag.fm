@@ -7,10 +7,6 @@
         Copy a URL from a track hosted on Official.fm or Soundcloud.com, then click on the plus button below to paste it !
       </div>
     <% end %>
-
-    <form id="create_player" action="<%= tracks_path %>" method="POST">
-      <input type="hidden" value="" name="player[url]" />
-    </form>
   <% end %>
 
   <% if @user.favorites.empty? && @user != current_user %>
