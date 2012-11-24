@@ -33,11 +33,12 @@ class Favorite < ActiveRecord::Base
   ######################
 
   def reorder(new_position)
+    return if new_position == position
     Favorite.transaction do
       if new_position < position
-        user.favorites.between(new_position, position-1).update_all('position = position + 1')
+        user.favorites.between(new_position, position).update_all('position = position + 1')
       else
-        user.favorites.between(position+1, new_position).update_all('position = position - 1')
+        user.favorites.between(position, new_position).update_all('position = position - 1')
       end
       update_attributes!(position: new_position)
     end

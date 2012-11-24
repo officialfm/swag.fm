@@ -36,14 +36,16 @@ class @Gallery
   dropTrack: (event) ->
     event.preventDefault()
     event = event.originalEvent
-    target = $(event.target).closest('[data-url]')[0]
-    draggedTrack = $('#' + event.dataTransfer.getData("Text"))[0]
-    if (parseInt($(draggedTrack).attr('data-position')) < parseInt($(target).attr('data-position')))
-      target.parentNode.insertBefore(draggedTrack, target.nextSibling)
+    targetElement = $(event.target).closest('[data-url]')[0]
+    draggedElement = $('#' + event.dataTransfer.getData("Text"))[0]
+    draggedTrack = @player.findTrackByAnchor(draggedElement.id)
+    targetTrack = @player.findTrackByAnchor(targetElement.id)
+    if (draggedTrack.position < targetTrack.position)
+      targetElement.parentNode.insertBefore(draggedElement, targetElement.nextSibling)
     else
-      target.parentNode.insertBefore(draggedTrack, target)
-    @tracks().each (index, track) -> $(track).attr('data-position', index + 1)
-    $.ajax($(draggedTrack).attr('data-url'), type: 'PUT', data: {position: $(draggedTrack).attr('data-position')})
+      targetElement.parentNode.insertBefore(draggedElement, targetElement)
+    @player.swapTracks(draggedTrack, targetTrack)
+    $.ajax(draggedTrack.url, type: 'PUT', data: {position: draggedTrack.position})
 
   clickOnPlay: (event) ->
     anchor = event.target.attributes.getNamedItem('data-target').value

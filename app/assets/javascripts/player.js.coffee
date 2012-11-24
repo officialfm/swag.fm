@@ -61,9 +61,18 @@ class @Player
         url: element.attr('data-url')
         streamUrl: element.attr('data-stream-url')
         originUrl: element.attr('data-origin-url')
+        position: element.attr('data-position')
         returnUrl: window.location.pathname
       }))
     array
+
+  swapTracks: (track1, track2) ->
+    index1 = @tracks().indexOf(track1)
+    index2 = @tracks().indexOf(track2)
+    @tracks()[index2] = track1
+    @tracks()[index1] = track2
+    for track in @tracks() 
+      track.position = @tracks().indexOf(track) + 1
 
   play: (track) ->
     if track.streamUrl.match(/official\.fm/)
