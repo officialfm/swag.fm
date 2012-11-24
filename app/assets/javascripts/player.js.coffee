@@ -11,9 +11,11 @@ class @Player
     @youtube.setAttribute('id', "youtube-player")
     @youtube.setAttribute('width', 200)
     @youtube.setAttribute('height', 200)
-    @youtube.appendChild(param = document.createElement('params'))
+    @youtube.setAttribute('data', "http://www.youtube.com/apiplayer?controls=0&rel=0&showinfo=0&version=3&enablejsapi=1&playerapiid=youtube-player")
+    @youtube.appendChild(param = document.createElement('param'))
     param.setAttribute("name", "allowScriptAccess")
     param.setAttribute("value", "always")
+    $('.tracks')[0].appendChild(@youtube)
     @autoPlay()
 
   observe: (name, callback) ->
@@ -76,6 +78,7 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@official).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
     @soundcloud.pause()
+    @youtube.pause()
     @official.play()
     @official
 
@@ -83,23 +86,21 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@soundcloud).attr('src', track.streamUrl + '?client_id=880faec8a616cb8ddc4fc35fe410b644')
     @official.pause()
+    @youtube.pause()
     @soundcloud.play()
     @soundcloud
 
   playYoutube: (track) ->
     if (track != @playingTrack && track != @pausedTrack)
-      @youtube.setAttribute('data', track.streamUrl + "?controls=0&rel=0&showinfo=0&version=3&enablejsapi=1&playerapiid=youtube-player&autoplay=1")
-    $('.tracks')[0].appendChild(@youtube)
+      @youtube.loadVideoByUrl(track.streamUrl)
     @official.pause()
     @soundcloud.pause()
     @youtube
 
   onYouTubePlayerReady: (playerId) ->
-    debugger
+    # Create aliases for providing the same interface as audio HTML5 element.
     @youtube.play = @youtube.playVideo.bind(@youtube)
     @youtube.pause = @youtube.pauseVideo.bind(@youtube)
-    @youtube.playVideo()
-
 
   pause: () ->
     @pausedTrack = @playingTrack
