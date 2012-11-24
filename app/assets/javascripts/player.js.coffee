@@ -4,6 +4,16 @@ class @Player
     @soundcloud = document.createElement('audio')
     $(@official).on('ended', @playNextTrack.bind(this))
     $(@soundcloud).on('ended', @playNextTrack.bind(this))
+
+    window.onYouTubePlayerReady = @onYouTubePlayerReady.bind(this)
+    @youtube = document.createElement('object')
+    @youtube.setAttribute('type', "application/x-shockwave-flash")
+    @youtube.setAttribute('id', "youtube-player")
+    @youtube.setAttribute('width', 200)
+    @youtube.setAttribute('height', 200)
+    @youtube.appendChild(param = document.createElement('params'))
+    param.setAttribute("name", "allowScriptAccess")
+    param.setAttribute("value", "always")
     @autoPlay()
 
   observe: (name, callback) ->
@@ -57,6 +67,8 @@ class @Player
       @activeAudio = @playOfficial(track)
     else if track.streamUrl.match(/soundcloud\.com/)
       @activeAudio = @playSoundcloud(track)
+    else if track.streamUrl.match(/youtube\.com/)
+      @activeAudio = @playYoutube(track)
     @notify('play', @playingTrack = track)
     @pausedTrack = null
 
@@ -73,6 +85,21 @@ class @Player
     @official.pause()
     @soundcloud.play()
     @soundcloud
+
+  playYoutube: (track) ->
+    if (track != @playingTrack && track != @pausedTrack)
+      @youtube.setAttribute('data', track.streamUrl + "?controls=0&rel=0&showinfo=0&version=3&enablejsapi=1&playerapiid=youtube-player&autoplay=1")
+    $('.tracks')[0].appendChild(@youtube)
+    @official.pause()
+    @soundcloud.pause()
+    @youtube
+
+  onYouTubePlayerReady: (playerId) ->
+    debugger
+    @youtube.play = @youtube.playVideo.bind(@youtube)
+    @youtube.pause = @youtube.pauseVideo.bind(@youtube)
+    @youtube.playVideo()
+
 
   pause: () ->
     @pausedTrack = @playingTrack
