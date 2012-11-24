@@ -66,6 +66,7 @@ class @Controller
     $.ajax('/favorites', type: 'POST', data: {url: url}, success: (response) =>
       $('.tracks')[0].insertBefore($(response)[0], $('.track')[0])
       $('.blank.slate').remove()
+      swagFm.gallery.resizeTracksHeight() # TODO: Remove that terrible coupling.
     )
 
   playNextTrack: () ->
