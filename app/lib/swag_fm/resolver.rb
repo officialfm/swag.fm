@@ -85,7 +85,7 @@ module SwagFm
       end
 
       def stream_url
-        track.media_content.find(&:default).url
+        track.media_content.find(&:default).url.split('?').first
       end
 
       def duration

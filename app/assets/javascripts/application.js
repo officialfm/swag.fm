@@ -4,6 +4,6 @@
 //= require_tree .
 
 $(document).ready(function() {
-  var swagFm = new SwagFm;
+  window.swagFm = new SwagFm;
   $(window).bind('page:change', swagFm.pageChanged.bind(swagFm));
 });

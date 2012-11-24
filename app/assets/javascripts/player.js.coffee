@@ -1,6 +1,9 @@
 class @Player
   constructor: () ->
-    $(@audio()).on('ended', @playNextTrack.bind(this))
+    @official = document.createElement('audio')
+    @soundcloud = document.createElement('audio')
+    $(@official).on('ended', @playNextTrack.bind(this))
+    $(@soundcloud).on('ended', @playNextTrack.bind(this))
     @autoPlay()
 
   observe: (name, callback) ->
@@ -50,16 +53,31 @@ class @Player
     array
 
   play: (track) ->
-    if (track != @playingTrack && track != @pausedTrack)
-      $(@audio()).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz&client_id=880faec8a616cb8ddc4fc35fe410b644')
+    if track.streamUrl.match(/official\.fm/)
+      @activeAudio = @playOfficial(track)
+    else if track.streamUrl.match(/soundcloud\.com/)
+      @activeAudio = @playSoundcloud(track)
     @notify('play', @playingTrack = track)
     @pausedTrack = null
-    @audio().play()
+
+  playOfficial: (track) ->
+    if (track != @playingTrack && track != @pausedTrack)
+      $(@official).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
+    @soundcloud.pause()
+    @official.play()
+    @official
+
+  playSoundcloud: (track) ->
+    if (track != @playingTrack && track != @pausedTrack)
+      $(@soundcloud).attr('src', track.streamUrl + '?client_id=880faec8a616cb8ddc4fc35fe410b644')
+    @official.pause()
+    @soundcloud.play()
+    @soundcloud
 
   pause: () ->
     @pausedTrack = @playingTrack
     @playingTrack = null
-    @audio().pause()
+    @activeAudio.pause()
     @notify('pause', @pausedTrack)
 
   nextTrack: () ->
