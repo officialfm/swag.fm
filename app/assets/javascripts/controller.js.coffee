@@ -2,7 +2,7 @@ class @Controller
   constructor: (@player) ->
     $(window).keydown(@keyPressed.bind(this))
     @player.observe('play', @play.bind(this))
-    @player.observe('pause', @play.bind(this))
+    @player.observe('pause', @pause.bind(this))
     @initializeEvents()
 
   initializeEvents: () ->
