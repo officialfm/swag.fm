@@ -105,6 +105,7 @@ class @Player
       @youtube.loadVideoByUrl(track.streamUrl)
     @official.pause()
     @soundcloud.pause()
+    @youtube.play()
     @youtube
 
   onYouTubePlayerReady: (playerId) ->
@@ -113,9 +114,8 @@ class @Player
     @youtube.pause = @youtube.pauseVideo.bind(@youtube)
     @youtube.addEventListener("onStateChange", "onYouTubeStateChanged")
 
-  onYouTubeStateChanged: (state, foo, bar) ->
-    if (state == 0)
-      @playNextTrack()
+  onYouTubeStateChanged: (state) ->
+    @playNextTrack() if state == 0
 
   pause: () ->
     @pausedTrack = @playingTrack
