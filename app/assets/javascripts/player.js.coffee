@@ -16,7 +16,7 @@ class @Player
     @youtube.appendChild(param = document.createElement('param'))
     param.setAttribute("name", "allowScriptAccess")
     param.setAttribute("value", "always")
-    $('.tracks')[0].appendChild(@youtube)
+    document.body.parentElement.appendChild(@youtube) # Attach to HTML to prevents turbolinks from replacing the flash embed.
     @autoPlay()
 
   observe: (name, callback) ->
