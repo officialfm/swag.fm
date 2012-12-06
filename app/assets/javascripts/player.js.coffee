@@ -31,7 +31,7 @@ class @Player
 
   autoPlay: () ->
     if window.location.hash && $(window.location.hash)[0]
-      @play($(window.location.hash)[0])
+      @play(@findTrackByAnchor(window.location.hash.replace('#', '')))
 
   findTrackByAnchor: (anchor) ->
     for track in @tracks()
@@ -88,7 +88,7 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@official).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
     @soundcloud.pause()
-    @youtube.pause()
+    @youtube.pause() if @youtube.pause
     @official.play()
     @official
 
@@ -96,7 +96,7 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@soundcloud).attr('src', track.streamUrl + '?client_id=880faec8a616cb8ddc4fc35fe410b644')
     @official.pause()
-    @youtube.pause()
+    @youtube.pause() if @youtube.pause
     @soundcloud.play()
     @soundcloud
 
