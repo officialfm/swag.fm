@@ -4,19 +4,9 @@ class @Player
     @soundcloud = document.createElement('audio')
     $(@official).on('ended', @playNextTrack.bind(this))
     $(@soundcloud).on('ended', @playNextTrack.bind(this))
-
     window.onYouTubePlayerReady = @onYouTubePlayerReady.bind(this)
     window.onYouTubeStateChanged = @onYouTubeStateChanged.bind(this)
-    @youtube = document.createElement('object')
-    @youtube.setAttribute('type', "application/x-shockwave-flash")
-    @youtube.setAttribute('id', "youtube-player")
-    @youtube.setAttribute('width', 200)
-    @youtube.setAttribute('height', 200)
-    @youtube.setAttribute('data', "http://www.youtube.com/apiplayer?controls=0&rel=0&showinfo=0&version=3&enablejsapi=1&playerapiid=youtube-player")
-    @youtube.appendChild(param = document.createElement('param'))
-    param.setAttribute("name", "allowScriptAccess")
-    param.setAttribute("value", "always")
-    document.body.parentElement.appendChild(@youtube) # Attach to HTML to prevents turbolinks from replacing the flash embed.
+    @youtube = new YoutubeWrapper()
     @autoPlay()
 
   observe: (name, callback) ->
@@ -88,7 +78,7 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@official).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
     @soundcloud.pause()
-    @youtube.pause() if @youtube.pause
+    @youtube.pause()
     @official.play()
     @official
 
@@ -96,23 +86,20 @@ class @Player
     if (track != @playingTrack && track != @pausedTrack)
       $(@soundcloud).attr('src', track.streamUrl + '?client_id=880faec8a616cb8ddc4fc35fe410b644')
     @official.pause()
-    @youtube.pause() if @youtube.pause
+    @youtube.pause()
     @soundcloud.play()
     @soundcloud
 
   playYoutube: (track) ->
     if (track != @playingTrack && track != @pausedTrack)
-      @youtube.loadVideoByUrl(track.streamUrl)
+      @youtube.playUrl(track.streamUrl)
     @official.pause()
     @soundcloud.pause()
     @youtube.play()
     @youtube
 
   onYouTubePlayerReady: (playerId) ->
-    # Create aliases for providing the same interface as audio HTML5 element.
-    @youtube.play = @youtube.playVideo.bind(@youtube)
-    @youtube.pause = @youtube.pauseVideo.bind(@youtube)
-    @youtube.addEventListener("onStateChange", "onYouTubeStateChanged")
+    @youtube.object.addEventListener("onStateChange", "onYouTubeStateChanged")
 
   onYouTubeStateChanged: (state) ->
     @playNextTrack() if state == 0
@@ -152,3 +139,26 @@ class @Player
       @play(@pausedTrack)
     else
       @play(@tracks()[0])
+
+# Goal is to provide same interface as audio HTML5 element.
+class YoutubeWrapper
+  constructor: () ->
+    @object = document.createElement('object')
+    @object.setAttribute('type', "application/x-shockwave-flash")
+    @object.setAttribute('id', "youtube-player")
+    @object.setAttribute('width', 200)
+    @object.setAttribute('height', 200)
+    @object.setAttribute('data', "http://www.youtube.com/apiplayer?controls=0&rel=0&showinfo=0&version=3&enablejsapi=1&playerapiid=youtube-player")
+    @object.appendChild(param = document.createElement('param'))
+    param.setAttribute("name", "allowScriptAccess")
+    param.setAttribute("value", "always")
+    document.body.parentElement.appendChild(@object) # Attach to HTML to prevents turbolinks from replacing the flash embed.
+
+  play: -> @object.playVideo() if @object.playVideo
+  pause: -> @object.pauseVideo() if @object.pauseVideo
+
+  playUrl: (url) ->
+    if @object.loadVideoByUrl
+      @object.loadVideoByUrl(url)
+    else
+      setTimeout((=> @playUrl(url)), 500)
