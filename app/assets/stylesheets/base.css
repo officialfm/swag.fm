@@ -23,8 +23,8 @@ a:active { color: #666; }
   position: relative;
   margin: 0;
   float: left;
-  -webkit-background-size: cover;
-  background-size: cover;
+  background: no-repeat;
+  background-size: 200px 200px;
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
