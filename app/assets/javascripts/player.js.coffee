@@ -76,7 +76,7 @@ class @Player
 
   playOfficial: (track) ->
     if (track != @playingTrack && track != @pausedTrack)
-      $(@official).attr('src', track.streamUrl + '?api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
+      $(@official).attr('src', track.streamUrl + '&api_key=4qpH1KdXhJF64NPD3zdK7t2gpTF8vHHz')
     @soundcloud.pause()
     @youtube.pause()
     @official.play()
