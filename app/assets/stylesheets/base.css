@@ -17,6 +17,7 @@ a:active { color: #666; }
   left: 0;
   bottom: 40px;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .track {
