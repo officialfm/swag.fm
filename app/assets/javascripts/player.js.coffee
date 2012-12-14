@@ -103,6 +103,7 @@ class @Player
 
   onYouTubeStateChanged: (state) ->
     @playNextTrack() if state == 0
+    @youtube.object.width = @youtube.object.height = '200px' if state == 1
 
   pause: () ->
     @pausedTrack = @playingTrack
@@ -158,6 +159,7 @@ class YoutubeWrapper
   pause: -> @object.pauseVideo() if @object.pauseVideo
 
   playUrl: (url) ->
+    @object.width = @object.height = '720px'  # Force Youtube to choose a good playback quality
     if @object.loadVideoByUrl
       @object.loadVideoByUrl(url)
     else
