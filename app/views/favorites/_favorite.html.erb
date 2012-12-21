@@ -7,20 +7,22 @@
   data-stream-url="<%= favorite.track.stream_url %>"
   data-origin-url="<%= favorite.track.url %>"
   data-title="<%= favorite.track.title %>"
-  data-artist="<%= favorite.track.artist %>"
-  style="background-image: url('<%= favorite.track.cover_url %>')">
-  <div class="primary controls">
-    <span class="iconic play" data-action="play" data-target="favorite_<%= favorite.id %>" title="Play"></span>
-    <span class="iconic pause" data-action="pause" data-target="favorite_<%= favorite.id %>" title="Pause"></span>
-  </div>
-  <div class="secondary controls">
-    <% if current_user && current_user == @user %>
-      <span class="iconic trash_stroke" data-action="delete" data-target="favorite_<%= favorite.id %>" title="Delete"></span>
-      <span class="iconic move" data-action="move" data-target="favorite_<%= favorite.id %>" draggable="true" title="Move"></span>
-    <% end %>
-    <% if current_user && current_user != @user %>
-      <span class="iconic plus" data-action="import" data-target="favorite_<%= favorite.id %>" title="Import to your playlist"></span>
-    <% end %>
-    <a href="<%= favorite.track.url %>" class="iconic link" target="_blank" title="Official page"></a>
+  data-artist="<%= favorite.track.artist %>">
+  <img src="<%= favorite.track.cover_url %>" class="cover-art">
+  <div class="controls container">
+    <div class="primary controls">
+      <span class="iconic play" data-action="play" data-target="favorite_<%= favorite.id %>" title="Play"></span>
+      <span class="iconic pause" data-action="pause" data-target="favorite_<%= favorite.id %>" title="Pause"></span>
+    </div>
+    <div class="secondary controls">
+      <% if current_user && current_user == @user %>
+        <span class="iconic trash_stroke" data-action="delete" data-target="favorite_<%= favorite.id %>" title="Delete"></span>
+        <span class="iconic move" data-action="move" data-target="favorite_<%= favorite.id %>" draggable="true" title="Move"></span>
+      <% end %>
+      <% if current_user && current_user != @user %>
+        <span class="iconic plus" data-action="import" data-target="favorite_<%= favorite.id %>" title="Import to your playlist"></span>
+      <% end %>
+      <a href="<%= favorite.track.url %>" class="iconic link" target="_blank" title="Official page"></a>
+    </div>
   </div>
 </div>
