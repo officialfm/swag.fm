@@ -22,13 +22,24 @@ a:active { color: #666; }
 
 .track {
   position: relative;
-  margin: 0;
+  display: block;
   float: left;
-  background: no-repeat;
-  background-size: 200px 200px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  background-color: #111;
+
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
+  overflow: hidden;
+}
+
+.track .cover-art {
+  display: block;
+  width: 200px;
+  max-width: 100%;
 }
 
 .track.paused, .track.playing {
@@ -93,13 +104,19 @@ a:active { color: #666; }
   background: rgba(160, 160, 160, 1);
 }
 
+.track .controls.container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .track .primary.controls {
   /* TODO: Hackish center */
+  position: relative;
+  top: 30%;
   width: 64px;
   height: 64px;
-  top: 68px;
-  display: block;
-  position: relative;
   margin: 0 auto;
 }
 
@@ -215,14 +232,6 @@ footer section.settings {
   text-align: center;
   font-size: 36pt;
   font-weight: bold;
-}
-
-.track {
-  display: block;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 
 /* TODO: Overlap track cover. */

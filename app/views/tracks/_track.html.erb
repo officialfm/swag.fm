@@ -6,20 +6,22 @@
   data-stream-url="<%= track.stream_url %>"
   data-origin-url="<%= track.url %>"
   data-title="<%= track.title %>"
-  data-artist="<%= track.artist %>"
-  style="background-image: url('<%= track.cover_url %>')">
-  <div class="primary controls">
-    <span class="iconic play" data-action="play" data-target="track_<%= track.id %>" title="Play"></span>
-    <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>" title="Pause"></span>
-  </div>
-  <div class="secondary controls">
-    <% if current_user && current_user == @user %>
-      <span class="iconic trash_stroke" data-action="delete" data-target="track_<%= track.id %>" title="Delete"></span>
-      <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true" title="Move"></span>
-    <% end %>
-    <% if current_user && current_user != @user %>
-      <span class="iconic plus" data-action="import" data-target="track_<%= track.id %>" title="Import to your playlist"></span>
-    <% end %>
-    <a href="<%= track.url %>" class="iconic link" target="_blank" title="Official page"></a>
+  data-artist="<%= track.artist %>">
+  <img src="<%= track.cover_url %>" class="cover-art">
+  <div class="controls container">
+    <div class="primary controls">
+      <span class="iconic play" data-action="play" data-target="track_<%= track.id %>" title="Play"></span>
+      <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>" title="Pause"></span>
+    </div>
+    <div class="secondary controls">
+      <% if current_user && current_user == @user %>
+        <span class="iconic trash_stroke" data-action="delete" data-target="track_<%= track.id %>" title="Delete"></span>
+        <span class="iconic move" data-action="move" data-target="track_<%= track.id %>" draggable="true" title="Move"></span>
+      <% end %>
+      <% if current_user && current_user != @user %>
+        <span class="iconic plus" data-action="import" data-target="track_<%= track.id %>" title="Import to your playlist"></span>
+      <% end %>
+      <a href="<%= track.url %>" class="iconic link" target="_blank" title="Official page"></a>
+    </div>
   </div>
 </div>
