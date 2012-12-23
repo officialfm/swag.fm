@@ -7,7 +7,6 @@ class @Player
     window.onYouTubePlayerReady = @onYouTubePlayerReady.bind(this)
     window.onYouTubeStateChanged = @onYouTubeStateChanged.bind(this)
     @youtube = new YoutubeWrapper()
-    @autoPlay()
 
   observe: (name, callback) ->
     @callbacks || (@callbacks = {})
@@ -18,10 +17,6 @@ class @Player
     if @callbacks && @callbacks[name]
       for callback in @callbacks[name]
         callback.apply(undefined, Array.prototype.slice.call(arguments, 1))
-
-  autoPlay: () ->
-    if window.location.hash && $(window.location.hash)[0]
-      @play(@findTrackByAnchor(window.location.hash.replace('#', '')))
 
   findTrackByAnchor: (anchor) ->
     for track in @tracks()
