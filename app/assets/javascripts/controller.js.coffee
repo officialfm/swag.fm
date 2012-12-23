@@ -54,8 +54,9 @@ class @Controller
   clickOnPreviousButton: () ->
     @player.playPreviousTrack()
 
-  clickOnAddButton: ->
-    url = prompt("Copy a track URL from official.fm or soundcloud.com.")
+  clickOnAddButton: (event) ->
+    event.preventDefault()
+    url = prompt("Copy a track URL from Official.fm, SoundCloud or YouTube.")
     if url
       if url.match(/official\.fm/) || url.match(/soundcloud\.com/) || url.match(/youtube\.com/)
         @addTrack(url)

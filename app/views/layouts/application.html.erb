@@ -14,21 +14,21 @@
       <span class="iconic first" id="previous-button" title="Previous track (use left arrow as a shortcut)"></span>
       <span class="iconic play" id="play-button" title="Play/pause (use space key as a shortcut)"></span>
       <span class="iconic last" id="next-button" title="Next track (use right arrow as a shortcut)"></span>
-      <% if current_user && current_user == @user %>
-        <span class="iconic plus" id="add-button" title="Add a track"></span>
-      <% end %>
     </section>
     <section class="info">
       <a id="current-track" href="" title="Go to playing track"></a>
     </section>
     <section class="settings">
+      <% if current_user %>
+        <%= link_to 'Add', '', id: "add-button" %>
+      <% end %>
       <% if @user && current_user != @user %>
         <%= link_to "#{@user.name}'s favorites", @user, class: 'active' %>
       <% end %>
       <%= link_to 'People', users_path, class: request.fullpath == users_path ? 'active' : '' %>
       <%= link_to 'Latest tracks', tracks_path, class: request.fullpath == tracks_path ? 'active' : '' %>
       <% if current_user %>
-        <%= link_to 'Your favorites', current_user, class: request.fullpath == user_path(current_user) ? 'active' : '' %>
+        <%= link_to 'Favorites', current_user, class: request.fullpath == user_path(current_user) ? 'active' : '' %>
         <%= link_to 'Logout', session_path, method: 'DELETE' %>
       <% else %>
         <%= link_to 'Login', session_path %>
