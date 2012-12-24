@@ -1,3 +1,11 @@
 == Swag.FM
 
-Web site for bookmarking favourite songs from official.fm.
+Web site for bookmarking favorite songs from Official.fm, SoundCloud and Youtube.
+
+== Contributing
+
+Contributions are welcome. Fork, commit on a topic branch and then send us a pull request.
+
+== License
+
+{MIT License}[http://www.opensource.org/licenses/MIT].
