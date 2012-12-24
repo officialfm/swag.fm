@@ -8,6 +8,10 @@
   data-title="<%= track.title %>"
   data-artist="<%= track.artist %>"
   style="background-image: url('<%= track.cover_url %>')">
+  <div class="details">
+    <span class="title"><%= track.title %></span><br/>
+    <span class="artist"><%= track.artist %></span>
+  </div>
   <div class="primary controls">
     <span class="iconic play" data-action="play" data-target="track_<%= track.id %>" title="Play"></span>
     <span class="iconic pause" data-action="pause" data-target="track_<%= track.id %>" title="Pause"></span>

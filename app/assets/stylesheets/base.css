@@ -55,6 +55,24 @@ a:active { color: #666; }
   z-index: 100;
 }
 
+.track .details {
+  visibility: hidden;
+  background: #000;
+  opacity: 0.66;
+  font-size: 0.66em;
+  padding: 5px;
+  width: auto;
+}
+
+.track:hover .details {
+  visibility: visible;
+}
+
+.track .details .title {
+  font-weight: bold;
+  color: #EEE;
+}
+
 .track .iconic { display: none }
 
 .track.paused .play { display: block; }
@@ -97,7 +115,7 @@ a:active { color: #666; }
   /* TODO: Hackish center */
   width: 64px;
   height: 64px;
-  top: 68px;
+  top: 20px;
   display: block;
   position: relative;
   margin: 0 auto;

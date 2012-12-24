@@ -9,6 +9,10 @@
   data-title="<%= favorite.track.title %>"
   data-artist="<%= favorite.track.artist %>"
   style="background-image: url('<%= favorite.track.cover_url %>')">
+  <div class="details">
+    <span class="title"><%= favorite.track.title %></span><br/>
+    <span class="artist"><%= favorite.track.artist %></span>
+  </div>
   <div class="primary controls">
     <span class="iconic play" data-action="play" data-target="favorite_<%= favorite.id %>" title="Play"></span>
     <span class="iconic pause" data-action="pause" data-target="favorite_<%= favorite.id %>" title="Pause"></span>
